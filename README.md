@@ -1,12 +1,6 @@
 # Java-CaseStudy
 Full stack Java project
 
-## User story:
-- as a hiker, I want to track my movement, so that I can gather statistics about my trips.
-- as an outdoor enthusiast, I want to share trips with my friends, so we can compare trip statistics.
-- as a hiker, I want to track my GPS location, so I can visualize my movement on a map.
-- as a customer, I want my personal information protected, so I can remain safe.
-
 ## Requirements
 * Tomcat webserver
 * Views:
