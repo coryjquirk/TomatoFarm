@@ -16,7 +16,7 @@
   display: block;}
   @font-face {
     font-family: "AGaramond";
-    src: local("AGaramond"), url(./fonts/AGaramond-Regular.otf) format("opentype");
+    src: local("AGaramond"), url(./assets/fonts/AGaramond-Regular.otf) format("opentype");
   }
   .fader {
     margin: 80px 100px 100px 200px;
