@@ -19,7 +19,7 @@ function Landing() {
             <span>Farm Inventory</span>
           </h3>
         </div>
-      </a>
+      </a>g
       <a href="/handbook">
         <div className="homeLauncher" style={cardStyle}>
           <h3>
