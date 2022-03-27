@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import Texture from "../../assets/45-degree-fabric-light.png";
+import Texture from "../../../assets/45-degree-fabric-light.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 // https://fontawesome.com/how-to-use/on-the-web/using-with/react
 import {faCog} from "@fortawesome/free-solid-svg-icons";
@@ -31,13 +31,6 @@ function Landing() {
                 <div className="homeLauncher" style={cardStyle}>
                     <h3>
                         <span>Plots</span>
-                    </h3>
-                </div>
-            </a>
-            <a href="/farmmap">
-                <div className="homeLauncher" style={cardStyle}>
-                    <h3>
-                        <span>Farm Map</span>
                     </h3>
                 </div>
             </a>

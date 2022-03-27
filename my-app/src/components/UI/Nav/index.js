@@ -33,37 +33,37 @@ function Nav() {
           </li>
           <li className="mainNav nav-item">
             <a className="nav-link" href="/">
-              HOME
+              home
             </a>
           </li>
           <li className="mainNav nav-item">
             <a className="nav-link" href="/inventory">
-              INVENTORY
+              inventory
             </a>
           </li>
           <li className="mainNav nav-item">
-            <a className="nav-link" href="/handbook">
-              HANDBOOK
+            <a className="nav-link" href="/plots">
+              plots
             </a>
           </li>
           <li className="mainNav nav-item">
             <a className="nav-link" href="/directory">
-              DIRECTORY
+              directory
             </a>
           </li>
           <li className="mainNav nav-item">
-            <a className="nav-link" href="/documents">
-              DOCUMENTS
-            </a>
-          </li>
-          <li className="mainNav nav-item">
-            <a className="nav-link" href="/farmmap">
-              MAP
+            <a className="nav-link" href="/options">
+              options
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/options">
-              OPTIONS
+            <a className="nav-link" href="/logout">
+              sign out
+            </a>
+          </li>
+          <li className="mainNav nav-item">
+            <a className="nav-link" href="/usermanagement">
+               user management
             </a>
           </li>
         </ul>
