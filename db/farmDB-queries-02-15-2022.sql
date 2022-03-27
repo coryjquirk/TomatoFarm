@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS farmdb;
 ###################
 CREATE DATABASE farmdb;
-USE farmdb;seed
+USE farmdb;
 ##################
 
 CREATE TABLE employee(
