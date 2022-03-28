@@ -1,20 +1,33 @@
 package com.coryjquirk.entitymodels;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.*;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    @Column(nullable = false, length = 50)
     private String firstName;
+    @Column(nullable = false, length = 50)
     private String lastName;
+    @Column(nullable = false, length = 50)
     private String email;
+    @Column
     private int phone;
+    @Column(nullable = false)
     private Date startDate;
+    @Column
     private Date endDate;
+    @OneToMany(mappedBy = "user")
+    private List<Plot> userPlots;
 
     public User() {
     }
 
-    public User(int userId, String firstName, String lastName, String email, int phone, Date startDate, Date endDate) {
+    public User(int userId, String firstName, String lastName, String email, int phone, Date startDate, Date endDate, List<Plot> userPlots) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,6 +35,7 @@ public class User {
         this.phone = phone;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.userPlots = userPlots;
     }
 
     public int getUserId(){
@@ -79,4 +93,13 @@ public class User {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+    public List<Plot> getUserPlots() {
+        return userPlots;
+    }
+
+    public void setUserPlots(List<Plot> userPlots) {
+        this.userPlots = userPlots;
+    }
+
 }
