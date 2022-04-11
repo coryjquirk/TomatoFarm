@@ -6,7 +6,7 @@ CREATE TABLE `tomatodb`.`users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(100) NOT NULL UNIQUE,
   `phone` VARCHAR(30) NULL,
   `password` VARCHAR(45) NOT NULL,
   `create_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
@@ -34,7 +34,7 @@ CREATE TABLE `tomatodb`.`plots_plants` (
 
 CREATE TABLE `tomatodb`.`varieties` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `variety_name` VARCHAR(100) NOT NULL,
+  `variety_name` VARCHAR(100) NOT NULL UNIQUE,
   `category` VARCHAR(100) NOT NULL,
   `color` VARCHAR(100) NULL,
   PRIMARY KEY (`id`));
