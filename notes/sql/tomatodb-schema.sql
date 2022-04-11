@@ -1,5 +1,5 @@
-CREATE DATABASE [IF NOT EXISTS] tomatodb;
-
+DROP DATABASE IF EXISTS tomatodb;
+CREATE DATABASE tomatodb;
 USE tomatodb;
 
 CREATE TABLE `tomatodb`.`users` (
@@ -35,5 +35,6 @@ CREATE TABLE `tomatodb`.`plots_plants` (
 CREATE TABLE `tomatodb`.`varieties` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `variety_name` VARCHAR(100) NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
   `color` VARCHAR(100) NULL,
   PRIMARY KEY (`id`));
