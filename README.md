@@ -2,12 +2,9 @@
 Full stack Java project
 
 ## Components
-- React.js front end
-- SQL database
-
-## To-do
-- Add more SQL data  
-- Java ORM to manipulate data  
+- Spring Boot
+- JSX front end
+- SQL back end
 
 ## Resources
-`requirements.md` 
+`notes/docs/requirements.md` 
