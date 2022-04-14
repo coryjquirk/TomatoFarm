@@ -1,0 +1,265 @@
+@font-face {
+  font-family: "AGaramond-Regular";
+  src: url("fonts/AGaramond-Regular.otf") format("opentype");
+  font-family: "AGaramond-Bold";
+  src: url("fonts/AGaramond-Bold.otf") format("opentype");
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+label {
+  font-weight: 600;
+}
+body {
+  background-color: #cccccc;
+  font-family: "AGaramond-Regular", Fallback, serif;
+  background-image: url("geometric-leaves.png");
+  background-blend-mode: lighten;
+}
+body a {
+  color: rgb(71, 71, 71);
+  text-decoration: none;
+  transition: 0.3s;
+  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
+}
+body a:hover{
+  color: white;
+  opacity: 1;
+}
+#registerBody,
+#landingBody,
+#plotsBody {
+  height: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+/*#registerBody {*/
+/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/greenhouse_zzyera.jpg);*/
+/*}*/
+/*#landingBody {*/
+/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/park_krkvut.jpg);*/
+/*}*/
+/*#plotsBody {*/
+/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916732/frontendSBA/ricepaddy_yatrow.jpg);*/
+/*}*/
+#navBar {
+  padding: 15px;
+  font-family: "AGaramond-Bold";
+  background-color: #00baff;
+  font-size: large;
+}
+.mainContent {
+  padding: 30px;
+  margin: 75px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 163, 128, .85);
+}
+#registrationForm {
+  padding: 30px;
+  margin: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 163, 128, .85);
+}
+#plotForm {
+  padding: 15px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+}
+#plotForm > label,
+input {
+  display: block;
+  margin: 5px;
+}
+#plotsDiv {
+  padding: 30px;
+  margin: 100px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgb(255, 163, 128, .85);
+}
+#plotsDiv > table,
+tr,
+th,
+td {
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.btn-primary {
+  background-color: #003bff;
+}
+#hiddenFNError {
+  display: none;
+}
+#hiddenLNError {
+  display: none;
+}
+#hiddenEmailError {
+  display: none;
+}
+#hiddenPasswordError {
+  display: none;
+}
+#hiddenCPasswordError {
+  display: none;
+}
+#orangeGrape, #rosemaryBush{
+  width: 280px;
+  height: 40%;
+  margin: 35px auto 35px auto;
+  border: 20px white solid;
+}
+.homeLauncher {
+  width: 280px;
+  height: 40%;
+  margin: 15px auto 15px auto;
+  padding: 28px 28px 28px 28px;
+  border-radius: 12px;
+  clear: both;
+  background-color: white;
+  position: relative;
+  color: black;
+  background-image: url("45-degree-fabric-light.png");
+  /* box-shadow: rgb(255, 69, 0, 1) 4px -4px 0px 0px,
+    rgb(255, 69, 0, 0.8) 8px -8px 0px 0px,
+    rgb(255, 69, 0, 0.6) 12px -12px 0px 0px,
+    rgb(255, 69, 0, 0.4) 16px -16px 0px 0px; */
+    box-shadow: #000000c0 3px -3px 0px 0px, #00000059 6px -6px 0px 0px, #00000023 9px -9px 0px 0px;
+}
+.homeLauncher h3 {
+  font-size: medium;
+}
+.homeLauncher span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.homeLauncher:hover {
+  transition: 2s;
+  background-color: rgb(255, 236, 214);
+}
+.homeLauncher span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.homeLauncher:hover span {
+  padding-right: 25px;
+  color: rgb(0, 0, 0);
+}
+.homeLauncher:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.footer,
+.footer a {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background-color: rgb(61, 61, 61);
+  color: rgb(175, 175, 175);
+  text-align: center;
+  font-family: "Roboto";
+}
+.footer p {
+  background-color: rgba(61, 61, 61, 0.747);
+  color: white;
+  font-size: 12px;
+  line-height: 30px;
+}
+#heirloomBoiz{
+  height: 30%;
+  width: 30%;
+}
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 100px;
+  border: 2px solid #00baff;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 100px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 100px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 100px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 100px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+@media screen and (min-width: 350px) {
+  .homeLauncher {
+    margin: 15px 0px 15px 0px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .homeLauncher {
+    width: 90%;
+  }
+}
