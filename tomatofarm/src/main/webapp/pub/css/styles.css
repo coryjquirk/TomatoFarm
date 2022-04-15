@@ -131,10 +131,6 @@ td {
   position: relative;
   color: black;
   background-image: url("45-degree-fabric-light.png");
-  /* box-shadow: rgb(255, 69, 0, 1) 4px -4px 0px 0px,
-    rgb(255, 69, 0, 0.8) 8px -8px 0px 0px,
-    rgb(255, 69, 0, 0.6) 12px -12px 0px 0px,
-    rgb(255, 69, 0, 0.4) 16px -16px 0px 0px; */
     box-shadow: #000000c0 3px -3px 0px 0px, #00000059 6px -6px 0px 0px, #00000023 9px -9px 0px 0px;
 }
 .homeLauncher h3 {

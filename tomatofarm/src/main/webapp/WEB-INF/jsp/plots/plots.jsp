@@ -30,8 +30,8 @@
             </tr>
         </c:forEach>
         </tbody>
-            </table>
-    <a href="addPlot"><button>Add new plot</button></a>
+    </table>
+    <a href="addPlot"><button class="btn btn-primary">Add new plot</button></a>
 </div>
 
 <jsp:include page="../include/footer.jsp" />

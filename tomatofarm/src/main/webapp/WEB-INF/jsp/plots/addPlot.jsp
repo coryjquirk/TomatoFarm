@@ -33,7 +33,7 @@
             <div id="hiddenTotalError"></div>
             <button type="submit" class="btn btn-primary" id="plotSBtn">Submit</button>
         </form>
-        <a href="plots"><button>Go back</button></a>
+        <a href="plots"><button class="btn btn-primary">Go back</button></a>
     </div>
     <div id="snackbar"><p id="snackTxt"></p></div>
 

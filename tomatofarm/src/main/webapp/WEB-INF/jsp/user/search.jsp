@@ -1,20 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../include/header.jsp" />
+<div class="mainContent">
+<h2>Search</h2>
 
-<h1>Search</h1>
-
-<br>
 <form action="/user/search" method="GET">
     First Name : <input type="text" name="firstName" value="${firstName}">
-    <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button>
 </form>
-
-<br>
 
 <c:if test="${not empty firstName}">
     <h5>Search Results Found ${usersModelKey.size()}</h5>
-    <br>
 </c:if>
 
 
@@ -35,5 +31,5 @@
     </c:forEach>
 </table>
 
-
+</div>
 <jsp:include page="../include/footer.jsp" />
