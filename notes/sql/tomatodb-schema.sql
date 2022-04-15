@@ -7,7 +7,6 @@ CREATE TABLE `tomatodb`.`users` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL UNIQUE,
-  `phone` VARCHAR(30) NULL,
   `password` VARCHAR(45) NOT NULL,
   `create_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
