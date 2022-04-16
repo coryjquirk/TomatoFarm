@@ -23,17 +23,13 @@ public class PlotsController {
     @Autowired
     private UserDAO userDao;
 
-    @RequestMapping(value = "/plots/plots", method = RequestMethod.GET)
+    @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
 
         List<Plot> allPlots = plotDao.findAll();
 
-        for( Plot plot : allPlots ) {
-            log.debug(plot.toString());
-        }
-
-        response.setViewName("/plots/plots");
+        response.setViewName("/plots/allPlots");
         response.addObject("allPlots", allPlots);
 
         return response;
@@ -46,10 +42,6 @@ public class PlotsController {
         List<String> userNames = userDao.findDistinctUserFirstLastName();
         List<String> soils = plotDao.findDistinctSoil();
         List<String> cultivationStyles = plotDao.findDistinctCultivationStyle();
-
-        log.debug("User names:"+userNames.toString());
-
-        log.debug("Soil types:"+soils.toString());
 
         response.setViewName("/plots/addPlot");
         response.addObject("soils", soils);

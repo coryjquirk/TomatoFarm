@@ -40,9 +40,9 @@ public class UserController {
 
         List<User> allUsers = userDao.findAll();
 
-        for( User user : allUsers ) {
-            log.debug(user.toString());
-        }
+//        for( User user : allUsers ) {
+//            log.debug(user.toString());
+//        }
 
         response.setViewName("/user/admin/directory");
         response.addObject("allUsers", allUsers);

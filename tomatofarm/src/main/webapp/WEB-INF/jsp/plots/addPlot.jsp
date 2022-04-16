@@ -7,8 +7,8 @@
     <div class="mainContent">
         <h2>Add new plot</h2>
         <form id="plotForm">
-            <label for="newPlotName">Select user:</label>
-            <select name="newPlotName" id="newPlotName">
+            <label for="plotName">Select user:</label>
+            <select name="plotName" id="plotName">
                 <c:forEach var="userNames" items="${userNames}">
                     <option value="${userNames}">${userNames}</option>
                 </c:forEach>

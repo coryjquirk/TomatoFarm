@@ -26,9 +26,9 @@ public class IndexController {
 
         List<User> allUsers = userDao.findAll();
 
-        for( User user : allUsers ) {
-            log.debug(user.toString());
-        }
+//        for( User user : allUsers ) {
+//            log.debug(user.toString());
+//        }
 
         response.setViewName("index");
 

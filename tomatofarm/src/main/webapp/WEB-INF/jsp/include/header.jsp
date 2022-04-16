@@ -15,4 +15,4 @@
 
 <body>
 
-    <div id="navBar"><a href="/user/register">Register</a> / <a href="/index">Home</a> / <a href="/plots/plots">Plots</a> / <a href="/user/search">Search</a></div>
+    <div id="navBar"><a href="/user/register">Register</a> / <a href="/index">Home</a> / <a href="/plots/plots">Plots</a> / <a href="/user/search">Search</a> <a href="/index"><h2 id="siteHeader">Tomato Farm &#127813;</h2></a></div>

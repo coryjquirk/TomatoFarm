@@ -18,6 +18,13 @@
                 </h3>
             </div>
         </a>
+        <a href="/varieties/allVarieties">
+            <div class="homeLauncher" >
+                <h3>
+                    <span>Tomato Varieties</span>
+                </h3>
+            </div>
+        </a>
         <a href="/user/userAdmin">
             <div class="homeLauncher" >
                 <h3>
