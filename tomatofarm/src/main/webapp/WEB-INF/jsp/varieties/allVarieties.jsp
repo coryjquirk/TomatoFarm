@@ -19,8 +19,8 @@
             <tr>
                 <th scope="row">${variety.id}</th>
                 <td>${variety.varietyName}</td>
-                <td>${variety.color}</td>
                 <td>${variety.category}</td>
+                <td>${variety.color}</td>
             </tr>
         </c:forEach>
         </tbody>

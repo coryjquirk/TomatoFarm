@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<jsp:include page="../../include/header.jsp" />
+<jsp:include page="../include/header.jsp" />
 <jsp:useBean id="allUsers" scope="request" type="java.util.List"/>
 
 <div class="mainContent">
@@ -23,4 +23,4 @@
     </table>
 </div>
 
-<jsp:include page="../../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp" />

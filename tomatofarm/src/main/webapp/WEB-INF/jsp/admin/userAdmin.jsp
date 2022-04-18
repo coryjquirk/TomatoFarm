@@ -3,7 +3,7 @@
 <jsp:include page="../include/header.jsp" />
 
     <div class="mainContent">
-        <a href="admin/directory">
+        <a href="directory">
             <div class="homeLauncher">
                 <h3>
                     <%--                    later this will be just OR also plots search?--%>

@@ -1,17 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp" />
 
 <div class="mainContent">
-<c:if test="${empty form.id}">
-   <h1>Sign Up</h1>
-</c:if>
-
-<c:if test="${not empty form.id}">
-    <h1>Edit User</h1>
-</c:if>
-
-<form action="/user/registerSubmit"   method="get">
+<sec:authorize access="!isAuthenticated()">
+<h1>Sign Up</h1>
+    <form action="/register/registerSubmit"   method="get">
     <input type="hidden" name="id" value="${form.id}">
 
     Email <input type="text" name="email" id="emailId" value="${form.email}">
@@ -46,16 +41,17 @@
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
-
 <c:if test="${bindingResult.hasErrors()}">
-
     <c:forEach items="${bindingResult.getAllErrors()}" var="error">
         <div style="color:red;">${error.getDefaultMessage()}</div>
     </c:forEach>
 </c:if>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+    <h3>You're already registered.</h3>
+    <a href="/index">Home</a>
+</sec:authorize>
 </div>
-
-
 
 <jsp:include page="../include/footer.jsp" />
 

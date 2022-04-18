@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
 
-//    public User findById(@Param("id") Long id);
     public User findById(@Param("id") Integer id);
 
     public List<User> findAll();

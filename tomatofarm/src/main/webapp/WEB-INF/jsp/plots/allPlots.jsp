@@ -4,6 +4,7 @@
 
 <div class="mainContent">
     <h2>All farm plots</h2>
+    <a href="addPlot"><button class="btn btn-primary">Add new plot</button></a>
     <table class="table" id="plotTable">
         <thead>
         <tr>
@@ -31,7 +32,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <a href="addPlot"><button class="btn btn-primary">Add new plot</button></a>
 </div>
 
 <jsp:include page="../include/footer.jsp" />

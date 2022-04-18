@@ -59,6 +59,24 @@ body a:hover{
   background-color: #60BF7A;
   font-size: large;
 }
+#authBar{
+  font-family: "AGaramond-Bold";
+  background-color: #E5D8B2;
+  height: 22px;
+}
+#authBar a{
+  font-size: 14px;
+  margin: 0px 10px 0px 10px;
+  padding: 0px 0px 0px 2px;
+}
+#welcome{
+  font-size: 14px;
+  margin: 0px 5px 0px 5px;
+  padding: 0px 0px 0px 10px;
+}
+#navLogout{
+  color: #6c6c6c;
+}
 .mainContent {
   padding: 30px;
   margin: 75px;
@@ -73,12 +91,8 @@ body a:hover{
   border-radius: 5px;
   background-color: rgb(255, 163, 128, .85);
 }
-#plotForm {
-  padding: 15px;
-  margin: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
+#plotForm > label, input{
+  display: block;
 }
 #plotForm > label,
 input {
