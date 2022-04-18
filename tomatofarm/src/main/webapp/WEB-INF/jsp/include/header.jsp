@@ -33,7 +33,3 @@
     <span id="welcome">Signed in as admin.</span>
 </sec:authorize>
 </div>
-
-<%--TODO: here's how you would do it by user roles, we'll loop back to this--%>
-
-

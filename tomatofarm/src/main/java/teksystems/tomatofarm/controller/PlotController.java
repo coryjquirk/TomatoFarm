@@ -32,7 +32,7 @@ public class PlotController {
         ModelAndView response = new ModelAndView();
 
         List<Plot> allPlots = plotRepository.findAll();
-
+        List<User> allUsers = userRepository.findAll();
         response.setViewName("/plots/allPlots");
         response.addObject("allPlots", allPlots);
 
@@ -43,7 +43,6 @@ public class PlotController {
     public ModelAndView addPlot() throws Exception {
         ModelAndView response = new ModelAndView();
 
-        //TODO: populate categories dropdown with full name but reference by id
         List<User> allUsers = userRepository.findAll();
         List<String> allSoils = plotRepository.findDistinctSoil();
         List<String> allCultivationStyles = plotRepository.findDistinctCultivationStyle();

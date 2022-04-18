@@ -1,6 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../include/header.jsp" />
-<jsp:useBean id="allPlots" scope="request" type="java.util.List"/>
 
 <div class="mainContent">
     <h2>All farm plots</h2>
@@ -24,11 +23,14 @@
                 <th scope="row">${plot.id}</th>
                 <td>${plot.soilMakeup}</td>
                 <td>${plot.cultivationStyle}</td>
+<%--                TODO: convert this column to actual user names--%>
                 <td>${plot.userId}</td>
                 <td>${plot.spacesTaken}</td>
                 <td>${plot.spacesTotal - plot.spacesTaken}</td>
                 <td>${plot.spacesTotal}</td>
             </tr>
+<%--            TODO: plot detail/edit button to see plants within plot
+                ability to add plants of certain varieties, or change column values. --%>
         </c:forEach>
         </tbody>
     </table>

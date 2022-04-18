@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import teksystems.tomatofarm.database.entity.User;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
@@ -23,4 +25,5 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     @Query(value = "select * from users where email = :email", nativeQuery = true)
     public User findByEmail(@Param("email") String email);
+
 }

@@ -10,6 +10,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Roles</th>
             <th scope="col">Create Date</th>
         </tr>
         <c:forEach var="user" items="${allUsers}">
@@ -17,9 +18,11 @@
                 <th scope="row">${user.id}</th>
                 <td>${user.firstName} ${user.lastName}</td>
                 <td>${user.email}</td>
+                <td>USER/ADMIN/ETC</td>
                 <td>${user.createDate}</td>
             </tr>
         </c:forEach>
+<%--        TODO: user detail that shows their plots and links to each plot to edit that plot--%>
     </table>
 </div>
 

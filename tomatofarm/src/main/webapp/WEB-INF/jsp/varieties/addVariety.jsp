@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="categories" scope="request" type="java.util.List"/>
+
 <jsp:include page="../include/header.jsp"/>
 <div class="mainContent">
     <h1>Add Variety</h1>
