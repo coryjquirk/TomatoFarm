@@ -91,11 +91,8 @@ body a:hover{
   border-radius: 5px;
   background-color: rgb(255, 163, 128, .85);
 }
-#plotForm > label, input{
-  display: block;
-}
-#plotForm > label,
-input {
+form > label,
+input, .btn {
   display: block;
   margin: 5px;
 }

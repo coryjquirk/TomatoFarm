@@ -49,7 +49,7 @@ public class RegisterController {
         if (bindingResult.hasErrors()) {
 
             for (ObjectError error : bindingResult.getAllErrors()) {
-                log.info( ((FieldError)error).getField() + " " +  error.getDefaultMessage());
+                log.debug(((FieldError)error).getField() + " " + error.getDefaultMessage());
             }
             response.addObject("form", form);
             response.addObject("bindingResult", bindingResult);

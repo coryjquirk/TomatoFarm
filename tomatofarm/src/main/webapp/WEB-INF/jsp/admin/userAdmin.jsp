@@ -11,13 +11,6 @@
                 </h3>
             </div>
         </a>
-        <a href="">
-            <div class="homeLauncher" >
-                <h3>
-                    <span>Add New User</span>
-                </h3>
-            </div>
-        </a>
         <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1648614618/frontendSBA/000262480037_iptksx.jpg" id="rosemaryBush" alt="rosemary bush">
     </div>
 

@@ -10,10 +10,11 @@
             <th scope="col">#</th>
             <th scope="col">Soil type</th>
             <th scope="col">Cultivation style</th>
-            <th scope="col">Steward</th>
+            <th scope="col">User ID</th>
             <th scope="col">Filled</th>
             <th scope="col">Available</th>
             <th scope="col">Slots Total</th>
+            <th scope="col">Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
                 <td>${plot.spacesTaken}</td>
                 <td>${plot.spacesTotal - plot.spacesTaken}</td>
                 <td>${plot.spacesTotal}</td>
+                <td><a href="/plots/editPlot/${plot.id}"><button class="btn btn-primary">edit</button></a></td>
             </tr>
 <%--            TODO: plot detail/edit button to see plants within plot
                 ability to add plants of certain varieties, or change column values. --%>

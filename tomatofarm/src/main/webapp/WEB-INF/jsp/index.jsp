@@ -27,15 +27,13 @@
                 </h3>
             </div>
         </a>
-        <sec:authorize access="hasAuthority('ADMIN')">
-            <a href="/admin/userAdmin">
-                <div class="homeLauncher">
-                    <h3>
-                        <span>User Admin</span>
-                    </h3>
-                </div>
-            </a>
-        </sec:authorize>
+        <a href="/admin/directory">
+            <div class="homeLauncher">
+                <h3>
+                    <span>People</span>
+                </h3>
+            </div>
+        </a>
         <a href="/login/logout">
             <div class="homeLauncher">
                 <h3>

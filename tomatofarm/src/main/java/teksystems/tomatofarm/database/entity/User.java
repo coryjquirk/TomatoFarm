@@ -8,6 +8,8 @@ import teksystems.tomatofarm.database.dao.UserRoleDAO;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -41,4 +43,8 @@ public class User {
     private Date createDate = new Date();
 
     //TODO: create attribute - list of strings of user's roles
+    //use @OneToMany annotation?
+//    private Set<UserRole> userRoles; // <-- maybe this
+//    private List<UserRole> userRoles;// <-- or maybe this since all we need is strings
+//    Java is saying basic attribute type can't be container though
 }

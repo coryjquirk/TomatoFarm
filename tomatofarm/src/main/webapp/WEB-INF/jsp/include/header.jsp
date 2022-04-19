@@ -26,7 +26,7 @@
     <a href="/login/login">Login</a>&#8226;<a href="/register/registerForm">Register</a>
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
-    <span id="welcome">Welcome, <sec:authentication property="principal.username"/>.</span> <a id="navLogout" href="/login/logout">Logout</a>
+    <span id="welcome">Welcome, <sec:authentication property="principal.username"/>.</span> <a id="navLogout" href="/login/logout">Logout</a> <a id="navAccount" href="/user/accountEditForm">Account</a>
 </sec:authorize>
 <%-- easy example of how to show something gated off for ADMIN only.--%>
 <sec:authorize access="hasAuthority('ADMIN')">
