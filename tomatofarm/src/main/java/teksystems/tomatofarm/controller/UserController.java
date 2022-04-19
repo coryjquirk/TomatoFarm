@@ -3,6 +3,9 @@ package teksystems.tomatofarm.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -11,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.tomatofarm.database.dao.UserDAO;
 import teksystems.tomatofarm.database.entity.User;
+import teksystems.tomatofarm.formbean.AccountEditFormBean;
 import teksystems.tomatofarm.formbean.RegisterFormBean;
+import teksystems.tomatofarm.service.UserService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -23,91 +27,18 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserDAO userDao;
-
-    @RequestMapping(value = "user/userAdmin", method = RequestMethod.GET)
-    public ModelAndView userAdmin() throws Exception {
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("/user/userAdmin");
-
-        return response;
-    }
-
-    @RequestMapping(value = "user/admin/directory", method = RequestMethod.GET)
-    public ModelAndView directory() throws Exception {
-        ModelAndView response = new ModelAndView();
-
-        List<User> allUsers = userDao.findAll();
-
-        for( User user : allUsers ) {
-            log.debug(user.toString());
-        }
-
-        response.setViewName("/user/admin/directory");
-        response.addObject("allUsers", allUsers);
-        return response;
-    }
-
-    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
-    public ModelAndView create() throws Exception {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("user/register");
-
-        RegisterFormBean form = new RegisterFormBean();
-        response.addObject("form", form);
-
-        return response;
-    }
-
-    @RequestMapping(value = "/user/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
-        ModelAndView response = new ModelAndView();
-
-        log.info(form.toString());
-
-        if (bindingResult.hasErrors()) {
-
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                log.info( ((FieldError)error).getField() + " " +  error.getDefaultMessage());
-            }
-
-            response.addObject("form", form);
-
-            response.addObject("bindingResult", bindingResult);
-
-            response.setViewName("user/register");
-            return response;
-        }
-
-        User user = userDao.findById(form.getId());
-
-        if (user == null) {
-            user = new User();
-        }
-
-        user.setEmail(form.getEmail());
-        user.setFirstName(form.getFirstName());
-        user.setLastName(form.getLastName());
-        user.setPassword(form.getPassword());
-        user.setCreateDate(new Date());
-
-        userDao.save(user);
-
-        log.info(form.toString());
-
-        response.setViewName("redirect:/user/edit/" + user.getId());
-
-        return response;
-    }
-
+    private UserDAO userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/user/edit/{userId}")
     public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/edit");
 
-        User user = userDao.findById(userId);
+        User user = userRepository.findById(userId);
 
         RegisterFormBean form = new RegisterFormBean();
 
@@ -117,7 +48,7 @@ public class UserController {
         form.setLastName(user.getLastName());
         form.setPassword(user.getPassword());
         form.setConfirmPassword(user.getPassword());
-
+        response.addObject("user", user);
         response.addObject("form", form);
 
         return response;
@@ -131,12 +62,68 @@ public class UserController {
         List<User> users = new ArrayList<>();
 
         if (!StringUtils.isEmpty(firstName)) {
-            users = userDao.findByFirstNameIgnoreCaseContaining(firstName);
+            users = userRepository.findByFirstNameIgnoreCaseContaining(firstName);
         }
 
         response.addObject("usersModelKey", users);
         response.addObject("firstName", firstName);
 
+        return response;
+    }
+    @RequestMapping(value="/user/accountEditForm", method = RequestMethod.GET )
+    public ModelAndView accountEdit() throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("user/accountEditForm");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByEmail(username);
+
+        AccountEditFormBean form = new AccountEditFormBean();
+        form.setFirstName(user.getFirstName());
+        form.setLastName(user.getLastName());
+        response.addObject("form", form);
+
+        return response;
+    }
+
+    @RequestMapping(value = "/user/accountEditSubmit", method = { RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView accountEditSubmit(@Valid AccountEditFormBean form, BindingResult bindingResult) throws Exception{
+        ModelAndView response = new ModelAndView();
+
+        log.info(form.toString());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User authenticatedUser = userRepository.findByEmail(username);
+        if (bindingResult.hasErrors()){
+            for (ObjectError error : bindingResult.getAllErrors()) {
+                log.debug( ((FieldError)error).getField() + " " +  error.getDefaultMessage());
+            }
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+            response.setViewName("/user/accountEditForm");
+            return response;
+        }
+        Integer authenticatedUserID = authenticatedUser.getId();
+        User userToEdit = userRepository.findById(authenticatedUserID);
+        String newPassword = form.getNewPassword();
+        String confirmNewPassword = form.getConfirmPassword();
+
+        String newFirstName = form.getFirstName();
+        String newLastName = form.getLastName();
+        if (newPassword!=null){
+            if(userService.changePasswordValidator(newPassword, confirmNewPassword)){
+                userToEdit.setPassword(passwordEncoder.encode(confirmNewPassword));
+            }
+        }
+        if (newFirstName!=null && !newFirstName.equals(userToEdit.getFirstName())){
+            userToEdit.setFirstName(newFirstName);
+        }
+        if (newLastName!=null && !newLastName.equals(userToEdit.getLastName())){
+            userToEdit.setLastName(newLastName);
+        }
+        userRepository.save(userToEdit);
+        response.setViewName("redirect:/index");
         return response;
     }
 }

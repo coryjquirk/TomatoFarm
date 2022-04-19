@@ -6,13 +6,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import teksystems.tomatofarm.database.entity.User;
+import teksystems.tomatofarm.database.entity.UserRole;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
 
-//    public User findById(@Param("id") Long id);
     public User findById(@Param("id") Integer id);
 
     public List<User> findAll();

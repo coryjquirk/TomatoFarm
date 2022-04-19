@@ -12,51 +12,57 @@ import teksystems.tomatofarm.database.dao.VarietyDAO;
 import teksystems.tomatofarm.database.entity.Variety;
 import teksystems.tomatofarm.formbean.VarietyFormBean;
 
+import javax.validation.Valid;
+import java.util.List;
+
 @Slf4j
 @Controller
 public class VarietyController {
 
     @Autowired
-    private VarietyDAO varietyDAO;
+    private VarietyDAO varietyRepository;
 
-    @RequestMapping(value="/variety", method= RequestMethod.GET)
-    public ModelAndView userList() throws Exception{
+
+    @RequestMapping(value = "/varieties/allVarieties", method = RequestMethod.GET)
+    public ModelAndView allVarieties() throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("variety");
+        response.setViewName("varieties/allVarieties");
+        List<Variety> allVarieties = varietyRepository.findAll();
+        response.addObject("allVarieties", allVarieties);
+        VarietyFormBean form = new VarietyFormBean();
+        response.addObject("form", form);
+        return response;
+    }
+    @RequestMapping(value = "/varieties/addVariety", method = RequestMethod.GET)
+    public ModelAndView addVariety() throws Exception {
+        ModelAndView response = new ModelAndView();
+        List<String> categories = varietyRepository.findDistinctCategory();
+        response.addObject("categories", categories);
+        response.setViewName("varieties/addVariety");
         return response;
     }
 
-    @RequestMapping(value="/variety/varietySubmit", method = RequestMethod.GET)
-    public ModelAndView submit(VarietyFormBean form, BindingResult bindingResult) throws Exception{
+    @RequestMapping(value = "/variety/varietySubmit", method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView submitVariety(@Valid VarietyFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
-
-        response.setViewName("variety");
-
-        if(bindingResult.hasErrors()){
-            for(FieldError error : bindingResult.getFieldErrors()){
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
                 log.debug(error.toString());
             }
-
-            response.addObject("bindingResult", bindingResult);
-
             response.addObject("form", form);
-        } else{
-            Variety variety = new Variety();
-
-            variety.setVarietyName(form.getVarietyName());
-            variety.setColor(form.getColor());
-            variety.setCategory(form.getCategory());
-
-            varietyDAO.save(variety);
+            response.addObject("bindingResult", bindingResult);
+            List<String> categories = varietyRepository.findDistinctCategory();
+            response.addObject("categories", categories);
+            response.setViewName("varieties/addVariety");
+            return response;
+        } else {
+            Variety newVariety = new Variety();
+            newVariety.setVarietyName(form.getVarietyName());
+            newVariety.setColor(form.getColor());
+            newVariety.setCategory(form.getCategory());
+            varietyRepository.save(newVariety);
         }
-
-        return response;
-    }
-
-    @RequestMapping(value = "/variety/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView variety() throws Exception {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("variety");
+        response.setViewName("redirect:/varieties/allVarieties");
         return response;
     }
 }

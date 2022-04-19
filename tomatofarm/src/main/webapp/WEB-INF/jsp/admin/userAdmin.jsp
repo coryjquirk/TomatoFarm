@@ -3,18 +3,11 @@
 <jsp:include page="../include/header.jsp" />
 
     <div class="mainContent">
-        <a href="admin/directory">
+        <a href="directory">
             <div class="homeLauncher">
                 <h3>
-                    <%--                    later this will be just OR also plots search?--%>
+                    <%--later this will be just OR also plots search?--%>
                     <span>View All Users</span>
-                </h3>
-            </div>
-        </a>
-        <a href="">
-            <div class="homeLauncher" >
-                <h3>
-                    <span>Add New User</span>
                 </h3>
             </div>
         </a>

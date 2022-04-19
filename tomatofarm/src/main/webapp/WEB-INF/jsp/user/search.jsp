@@ -4,15 +4,17 @@
 <div class="mainContent">
 <h2>Search</h2>
 
+    <%--TODO: search by other values--%>
+    <%--    dropdown select first name, last name, email, etc. how?--%>
 <form action="/user/search" method="GET">
-    First Name : <input type="text" name="firstName" value="${firstName}">
+    <label for="bananas">First name:</label>
+    <input type="text" name="firstName" id="bananas" value="${firstName}">
+
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>
-
 <c:if test="${not empty firstName}">
     <h5>Search Results Found ${usersModelKey.size()}</h5>
 </c:if>
-
 
 <table class="table">
     <tr scope="row">

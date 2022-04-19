@@ -1,39 +1,67 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<jsp:include page="include/header.jsp" />
+<jsp:include page="include/header.jsp"/>
 
-    <div class="mainContent">
+<div class="mainContent">
+    <sec:authorize access="isAuthenticated()">
         <a href="/user/search">
             <div class="homeLauncher">
                 <h3>
-                    <%--                    later this will be just OR also plots search?--%>
+                        <%--later this will be just OR also plots search?--%>
                     <span>Search (Users/plots)</span>
                 </h3>
             </div>
         </a>
-        <a href="/plots/plots">
-            <div class="homeLauncher" >
+        <a href="/plots/allPlots">
+            <div class="homeLauncher">
                 <h3>
                     <span>Plots</span>
                 </h3>
             </div>
         </a>
-        <a href="/user/userAdmin">
-            <div class="homeLauncher" >
+        <a href="/varieties/allVarieties">
+            <div class="homeLauncher">
                 <h3>
-                    <span>User Admin</span>
+                    <span>Tomato Varieties</span>
                 </h3>
             </div>
         </a>
-        <a href="/index">
-            <div class="homeLauncher" >
+        <a href="/admin/directory">
+            <div class="homeLauncher">
                 <h3>
-                    <span>Sign Out</span>
+                    <span>People</span>
                 </h3>
             </div>
         </a>
-        <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg" id="orangeGrape" alt="tray of orange grape tomatoes">
-    </div>
+        <a href="/login/logout">
+            <div class="homeLauncher">
+                <h3>
+                    <span>Logout</span>
+                </h3>
+            </div>
+        </a>
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <a href="/login/login">
+            <div class="homeLauncher">
+                <h3>
+                    <span>Login</span>
+                </h3>
+            </div>
+        </a>
+        <a href="/register/registerForm">
+            <div class="homeLauncher">
+                <h3>
+                    <span>Register</span>
+                </h3>
+            </div>
+        </a>
+    </sec:authorize>
+
+    <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg"
+         id="orangeGrape" alt="tray of orange grape tomatoes">
+</div>
 
 
-<jsp:include page="include/footer.jsp" />
+<jsp:include page="include/footer.jsp"/>

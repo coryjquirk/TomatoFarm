@@ -1,11 +1,17 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="../include/header.jsp" />
-    <div class="mainContent">
-        <h2>Add new plot</h2>
-        <form action="/plots/plotSubmit" method="GET" id="plotForm">
+<jsp:include page="../include/header.jsp"/>
+
+<div class="mainContent">
+    <sec:authorize access="hasAuthority('ADMIN')">
+        <h2>Edit plot</h2>
+        <p>Plot #${form.id}</p>
+        <form action="/plots/plotEditSubmit" method="GET" id="plotForm">
             <input type="hidden" name="id" value="${form.id}">
-            <label for="userId">User:*</label>
+
+            <label for="userId">User:</label>
             <select name="userId" id="userId">
                 <c:forEach items="${allUsers}" var="allUsers">
                     <option value="${allUsers.id}">${allUsers.firstName} ${allUsers.lastName}</option>
@@ -23,19 +29,27 @@
                     <option value="${allCultivationStyles}">${allCultivationStyles}</option>
                 </c:forEach>
             </select>
-            <label for="spacesTotal">Total spaces:*</label>
+            <p><strong>Spaces currently occupied by plants:</strong> ${form.spacesTaken}</p>
+            <label for="spacesTotal">Total spaces:</label>
+            <p>(must be greater than # of spaces currently occupied by plants)</p>
             <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" value="${form.spacesTotal}">
             <button type="submit" class="btn btn-primary" id="plotSBtn">Submit</button>
+
         </form>
-        <p><strong>* required fields</strong></p>
         <c:if test="${bindingResult.hasErrors()}">
-            <c:forEach items='${bindingResult.getAllErrors()}' var="error">
+            <c:forEach items="${bindingResult.getAllErrors()}" var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
         </c:if>
-        <hr>
-        <a href="plots"><button class="btn btn-primary">Back</button></a>
-    </div>
-    <div id="snackbar"><p id="snackTxt"></p></div>
+    </sec:authorize>
+    <sec:authorize access="!hasAuthority('ADMIN')">
+        <p>Not authorized.</p>
+        <a href="/index">
+            <button class="btn-primary">Home</button>
+        </a>
+    </sec:authorize>
+    <hr>
+    <a href="/plots/allPlots"><button class="btn btn-primary">Back</button></a>
+</div>
 
-<jsp:include page="../include/footer.jsp" />
+<jsp:include page="../include/footer.jsp"/>

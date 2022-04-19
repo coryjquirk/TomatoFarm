@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Builder
 @Getter
 @Setter
 @ToString
@@ -17,11 +18,11 @@ public class Plot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     //remember, plots are not to be created without an assigned user
     @Column(name = "user_id")
-    private Long userId;
+    private Integer userId;
 
     @Column(name = "soil_makeup")
     private String soilMakeup;
@@ -34,5 +35,4 @@ public class Plot {
 
     @Column(name = "spaces_taken")
     private Integer spacesTaken;
-
 }
