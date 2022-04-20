@@ -34,13 +34,22 @@
         </c:forEach>
         </tbody>
     </table>
-    <a href="/admin/directory"><button class="btn btn-primary">Back</button></a>
-<%--TODO: create dropdown list to reassign a plot to this user.--%>
-    <%--    <hr>--%>
-<%--    <h3>Reassign a plot to this user</h3>--%>
-<%--<c:forEach var="plot" items="${allPlots}">--%>
-<%--</c:forEach>--%>
+    <a href="/admin/directory">
+        <button class="btn btn-primary">Back</button>
+    </a>
+    <hr>
 
+    <h3>Reassign a plot to this user</h3>
+    <form action="/admin/assignPlot" method="get">
+        <input type="hidden" name="userId" value="${user.id}">
+        <select  name="plotId"  id="plotId">
+            <c:forEach var="plot" items="${allPlots}">
+                <option value="${plot.id}">#${plot.id}, ${plot.soilMakeup}, ${plot.cultivationStyle}, assigned
+                    to: ${plot.userFullname}</option>
+            </c:forEach>
+        </select>
+        <button type="submit" class="btn btn-success">Assign to user</button>
+    </form>
     <hr>
     <sec:authorize access="hasAuthority('ADMIN')">
         <h3>Edit user:</h3>
@@ -60,14 +69,13 @@
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
             <p>Current permissions:
-            <c:forEach var="role" items="${userRoles}">
-                ${role.userRole}
-            </c:forEach>
+                <c:forEach var="role" items="${userRoles}">
+                    ${role.userRole}
+                </c:forEach>
             </p>
             <h4>Edit permissions</h4>
             <label for="adminCheckbox">Admin permissions?</label>
             <form:checkbox path="form.admin" id="adminCheckbox"/>
-<%--            <p>WARNING: this can only be undone on the back end by a SQL DBA.</p>--%>
             <button class="btn btn-success" type="submit">Submit</button>
         </form>
         <c:if test="${bindingResult.hasErrors()}">

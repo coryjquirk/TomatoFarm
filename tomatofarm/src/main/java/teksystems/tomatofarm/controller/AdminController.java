@@ -66,7 +66,6 @@ public class AdminController {
         User userToEdit = userRepository.findById(userId);
         List<UserRole> userRoles = userRoleRepository.findByUserId(userToEdit.getId());
         List<Plot> userPlots = plotRepository.findByUserId(userId);
-        //TODO: pass allPlots onto dropdown list for assignment selection
         List<Plot> allPlots = plotRepository.findAll();
         log.info(userPlots.toString());
 
@@ -83,17 +82,31 @@ public class AdminController {
                 form.setAdmin(true);
             }
         }
+        response.addObject("user", userToEdit);
         response.addObject("userRoles", userRoles);
+        response.addObject("allPlots", allPlots);
         response.addObject("userPlots", userPlots);
         response.addObject("form", form);
         return response;
     }
 
+    @RequestMapping(value = "/admin/assignPlot", method = RequestMethod.GET)
+    public ModelAndView index(@RequestParam(name="userId") Integer userId, @RequestParam(name="plotId") Integer plotId) throws Exception{
+        ModelAndView response = new ModelAndView();
+        User userToAssign = userRepository.findById(userId);
+        Plot plotToAssign = plotRepository.findById(plotId);
+        plotToAssign.setUserId(userId);
+        plotToAssign.setUserFullname(userToAssign.getFirstName()+" "+userToAssign.getLastName());
+        plotRepository.save(plotToAssign);
+        response.setViewName("redirect:/admin/userEdit/"+userId);
+        return response;
+    }
+
+    //TODO: protect this method with authorization so only ADMIN can access this.
     @Transactional
     @RequestMapping(value = "/admin/userSubmit", method = { RequestMethod.POST, RequestMethod.GET})
     public ModelAndView editUserSubmit(@Valid EditUserFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
-
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError) error).getField() + " " + error.getDefaultMessage());

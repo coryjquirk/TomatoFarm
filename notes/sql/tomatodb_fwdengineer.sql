@@ -25,10 +25,11 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`varieties` (
   `variety_name` VARCHAR(100) NOT NULL,
   `category` VARCHAR(100) NOT NULL,
   `color` VARCHAR(100) NULL DEFAULT NULL,
+  `image_url` VARCHAR(3000) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `variety_name` (`variety_name` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 85
+AUTO_INCREMENT = 81
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -40,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`plants` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `variety_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `FK_plants_variety_id_idx` (`variety_id` ASC) VISIBLE,
-  CONSTRAINT `FK_plants_variety_id`
+  INDEX `FK_plants_varieties_idx` (`variety_id` ASC) VISIBLE,
+  CONSTRAINT `FK_plants_varieties`
     FOREIGN KEY (`variety_id`)
     REFERENCES `tomatodb`.`varieties` (`id`))
 ENGINE = InnoDB
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`plots` (
     FOREIGN KEY (`user_id`)
     REFERENCES `tomatodb`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 21
+AUTO_INCREMENT = 22
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

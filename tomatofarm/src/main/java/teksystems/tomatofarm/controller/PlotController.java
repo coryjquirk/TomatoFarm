@@ -92,8 +92,18 @@ public class PlotController {
         response.setViewName("redirect:/plots/allPlots");
         return response;
     }
+    @GetMapping("/plots/detail/{plotId}")
+    public ModelAndView plotDetail(@PathVariable("plotId") Integer plotId) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("plots/detail");
+
+        Plot plotToDetail = plotRepository.findById(plotId);
+
+        response.addObject("plot", plotToDetail);
+        return response;
+    }
     @GetMapping("/plots/editPlot/{plotId}")
-    public ModelAndView editUser(@PathVariable("plotId") Integer plotId) throws Exception {
+    public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("plots/editPlot");
 

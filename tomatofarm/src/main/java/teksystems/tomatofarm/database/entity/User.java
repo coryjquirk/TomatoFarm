@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import teksystems.tomatofarm.database.dao.UserRoleDAO;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -42,4 +43,8 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();
 
+//    Don't really need this right now,
+//    I always just grab List with plotDAO.findByUserId
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Plot> userPlots = new ArrayList<>();
 }

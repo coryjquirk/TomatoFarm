@@ -2,6 +2,7 @@
 
 <jsp:include page="../include/header.jsp" />
     <div class="mainContent">
+        <sec:authorize access="hasAuthority('ADMIN')">
         <h2>Add new plot</h2>
         <form action="/plots/plotSubmit" method="GET" id="plotForm">
             <input type="hidden" name="id" value="${form.id}">
@@ -33,6 +34,14 @@
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
         </c:if>
+
+        </sec:authorize>
+        <sec:authorize access="!hasAuthority('ADMIN')">
+            <p>Must be logged in as Admin to add a new plot.</p>
+            <a href="/index">
+                <button class="btn-primary">Home</button>
+            </a>
+        </sec:authorize>
         <hr>
         <a href="/plots/plots"><button class="btn btn-primary">Back</button></a>
     </div>

@@ -26,8 +26,8 @@ CREATE TABLE `plants` (
   `id` int NOT NULL AUTO_INCREMENT,
   `variety_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_plants_variety_id_idx` (`variety_id`),
-  CONSTRAINT `FK_plants_variety_id` FOREIGN KEY (`variety_id`) REFERENCES `varieties` (`id`)
+  KEY `FK_plants_varieties_idx` (`variety_id`),
+  CONSTRAINT `FK_plants_varieties` FOREIGN KEY (`variety_id`) REFERENCES `varieties` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,7 +49,7 @@ CREATE TABLE `plots` (
   PRIMARY KEY (`id`),
   KEY `FK_plots_user_id_idx` (`user_id`),
   CONSTRAINT `FK_plots_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,9 +120,10 @@ CREATE TABLE `varieties` (
   `variety_name` varchar(100) NOT NULL,
   `category` varchar(100) NOT NULL,
   `color` varchar(100) DEFAULT NULL,
+  `image_url` varchar(3000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `variety_name` (`variety_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -134,4 +135,4 @@ CREATE TABLE `varieties` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19 20:48:37
+-- Dump completed on 2022-04-20  0:27:36

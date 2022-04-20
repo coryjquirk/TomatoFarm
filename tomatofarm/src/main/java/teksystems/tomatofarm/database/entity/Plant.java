@@ -3,6 +3,8 @@ package teksystems.tomatofarm.database.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,4 +23,7 @@ public class Plant {
 
     @Column(name = "variety_id")
     private Integer varietyId;
+
+    @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY )
+    private List<PlotsPlants> plotsPlants = new ArrayList();
 }
