@@ -11,11 +11,11 @@ import java.util.List;
 @Repository
 public interface PlotDAO extends JpaRepository<Plot, Long> {
 
-    public Plot findById(@Param("id") Integer id);
+    Plot findById(@Param("id") Integer id);
 
-    public List<Plot> findAll();
+//    List<Plot> findAll();
 
-    public List<Plot> findByUserId(Integer userId);
+    List<Plot> findByUserId(Integer userId);
 
     @Query("SELECT DISTINCT p.soilMakeup FROM Plot p")
     List<String> findDistinctSoil();

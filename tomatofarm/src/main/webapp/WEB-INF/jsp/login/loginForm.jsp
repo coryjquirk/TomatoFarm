@@ -7,7 +7,7 @@
 <%--    name has to be username--%>
     <label for="username">Username (email):</label>
     <input type="text" name="username" id="username">
-
+<%--            TODO: mask password characters in input box.--%>
     <label for="password">Password:</label>
     <input type="text" name="password" id="password">
 

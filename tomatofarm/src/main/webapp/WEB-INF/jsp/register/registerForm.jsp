@@ -32,7 +32,7 @@
             <c:forEach items='${bindingResult.getFieldErrors("password")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-
+<%--            TODO: mask password characters in input box.--%>
             <label for="confirmPasswordId">Confirm password:</label>
             <input type="text"
                    name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}">
@@ -41,6 +41,7 @@
             </c:forEach>
             <p>* all fields required</p>
             <button class="btn btn-primary" type="submit">Submit</button>
+            <p>You'll be redirected to the login page upon successful registration.</p>
         </form>
         <c:if test="${bindingResult.hasErrors()}">
             <c:forEach items="${bindingResult.getAllErrors()}" var="error">

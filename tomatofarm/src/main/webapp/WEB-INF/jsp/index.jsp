@@ -5,13 +5,6 @@
 
 <div class="mainContent">
     <sec:authorize access="isAuthenticated()">
-        <a href="/user/search">
-            <div class="homeLauncher">
-                <h3>
-                    <span>Search (Users/plots)</span>
-                </h3>
-            </div>
-        </a>
 <%--        TODO: "My Plots" page to show those assigned to the logged in user.--%>
         <a href="/plots/allPlots">
             <div class="homeLauncher">
@@ -31,6 +24,13 @@
             <div class="homeLauncher">
                 <h3>
                     <span>People</span>
+                </h3>
+            </div>
+        </a>
+        <a href="/user/search">
+            <div class="homeLauncher">
+                <h3>
+                    <span>Search (Users/plots)</span>
                 </h3>
             </div>
         </a>

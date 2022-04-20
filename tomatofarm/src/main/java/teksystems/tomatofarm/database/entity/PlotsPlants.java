@@ -21,11 +21,12 @@ public class PlotsPlants {
 //
 //    @Column(name = "plant_id")
 //    private Integer plantId;
-
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "plot_id", nullable = false, updatable = true)
     private Plot plot;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "plant_id", nullable = false, updatable = true)
     private Plant plant;

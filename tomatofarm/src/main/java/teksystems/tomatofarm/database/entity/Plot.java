@@ -43,6 +43,7 @@ public class Plot {
     @Column(name = "spaces_taken")
     private Integer spacesTaken;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY)
     private List<PlotsPlants> plotsPlants = new ArrayList<>();
 

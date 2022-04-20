@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import teksystems.tomatofarm.database.dao.PlantDAO;
 import teksystems.tomatofarm.database.dao.PlotDAO;
 import teksystems.tomatofarm.database.dao.UserDAO;
 import teksystems.tomatofarm.database.dao.VarietyDAO;
-import teksystems.tomatofarm.database.entity.Plot;
-import teksystems.tomatofarm.database.entity.User;
-import teksystems.tomatofarm.database.entity.UserRole;
-import teksystems.tomatofarm.database.entity.Variety;
+import teksystems.tomatofarm.database.entity.*;
 import teksystems.tomatofarm.formbean.EditUserFormBean;
 import teksystems.tomatofarm.formbean.PlotEditFormBean;
 import teksystems.tomatofarm.formbean.PlotFormBean;
@@ -35,6 +33,9 @@ public class PlotController {
     private UserDAO userRepository;
     @Autowired
     private VarietyDAO varietyRepository;
+    @Autowired
+    private PlantDAO plantRepository;
+
     @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
@@ -101,6 +102,11 @@ public class PlotController {
 
         Plot plotToDetail = plotRepository.findById(plotId);
         List<Variety> allVarieties = varietyRepository.findAll();
+        List<Plant> allPlants = plantRepository.findAll();
+        log.info("All plants: " + allPlants);
+//        TODO: serve plants associated with plot
+//      in entity where I have array, use @ToString.exclude and @EqualsAndHashCode
+//        put it on individual too
         response.addObject("varieties", allVarieties);
         response.addObject("plot", plotToDetail);
         return response;

@@ -11,7 +11,7 @@
     </a>
     <hr>
     <c:forEach var="variety" items="${varieties}">
-        <div class="card" style="width: 18rem;">
+        <div class="card">
             <img class="card-img-top" src="${variety.imageUrl}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Name: ${variety.varietyName}</h5>

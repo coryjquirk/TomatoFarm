@@ -24,6 +24,7 @@ public class Plant {
     @Column(name = "variety_id")
     private Integer varietyId;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY )
     private List<PlotsPlants> plotsPlants = new ArrayList();
 }
