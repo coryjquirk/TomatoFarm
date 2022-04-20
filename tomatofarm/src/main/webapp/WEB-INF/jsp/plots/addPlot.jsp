@@ -25,7 +25,7 @@
             </select>
             <label for="spacesTotal">Total spaces:*</label>
             <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" value="${form.spacesTotal}">
-            <button type="submit" class="btn btn-primary" id="plotSBtn">Submit</button>
+            <button type="submit" class="btn btn-success" id="plotSBtn">Submit</button>
         </form>
         <p><strong>* required fields</strong></p>
         <c:if test="${bindingResult.hasErrors()}">
@@ -34,7 +34,7 @@
             </c:forEach>
         </c:if>
         <hr>
-        <a href="plots"><button class="btn btn-primary">Back</button></a>
+        <a href="/plots/plots"><button class="btn btn-primary">Back</button></a>
     </div>
     <div id="snackbar"><p id="snackTxt"></p></div>
 

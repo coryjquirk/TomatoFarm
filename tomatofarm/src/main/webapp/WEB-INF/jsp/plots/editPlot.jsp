@@ -33,8 +33,7 @@
             <label for="spacesTotal">Total spaces:</label>
             <p>(must be greater than # of spaces currently occupied by plants)</p>
             <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" value="${form.spacesTotal}">
-            <button type="submit" class="btn btn-primary" id="plotSBtn">Submit</button>
-
+            <button type="submit" class="btn btn-success" id="plotSBtn">Submit</button>
         </form>
         <c:if test="${bindingResult.hasErrors()}">
             <c:forEach items="${bindingResult.getAllErrors()}" var="error">

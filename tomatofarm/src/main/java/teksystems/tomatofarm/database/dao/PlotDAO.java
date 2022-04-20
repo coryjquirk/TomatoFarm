@@ -15,6 +15,8 @@ public interface PlotDAO extends JpaRepository<Plot, Long> {
 
     public List<Plot> findAll();
 
+    public List<Plot> findByUserId(Integer userId);
+
     @Query("SELECT DISTINCT p.soilMakeup FROM Plot p")
     List<String> findDistinctSoil();
 

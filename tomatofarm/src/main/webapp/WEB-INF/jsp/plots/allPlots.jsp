@@ -18,14 +18,12 @@
         </tr>
         </thead>
         <tbody>
-
         <c:forEach var="plot" items="${allPlots}">
             <tr>
                 <th scope="row">${plot.id}</th>
                 <td>${plot.soilMakeup}</td>
                 <td>${plot.cultivationStyle}</td>
-<%--                TODO: convert this column to actual user names--%>
-                <td>${plot.userId}</td>
+                <td>${plot.userFullname}</td>
                 <td>${plot.spacesTaken}</td>
                 <td>${plot.spacesTotal - plot.spacesTaken}</td>
                 <td>${plot.spacesTotal}</td>

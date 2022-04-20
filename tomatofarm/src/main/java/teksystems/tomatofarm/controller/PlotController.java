@@ -36,36 +36,22 @@ public class PlotController {
     @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
-
         List<Plot> allPlots = plotRepository.findAll();
-        List<User> allUsers = userRepository.findAll();
-//        TODO: add some code here to populate User ID with people names?
-
-        //for each Plot in allPlots:
-            //get user by Plot.userId
-            //add first and last name
-        for (Plot plot : allPlots){
-
-        }
         response.setViewName("/plots/allPlots");
         response.addObject("allPlots", allPlots);
-
         return response;
     }
 
     @RequestMapping(value = "/plots/addPlot", method = RequestMethod.GET)
     public ModelAndView addPlot() throws Exception {
         ModelAndView response = new ModelAndView();
-
         List<User> allUsers = userRepository.findAll();
         List<String> allSoils = plotRepository.findDistinctSoil();
         List<String> allCultivationStyles = plotRepository.findDistinctCultivationStyle();
-
         response.setViewName("/plots/addPlot");
         response.addObject("allSoils", allSoils);
         response.addObject("allUsers", allUsers);
         response.addObject("allCultivationStyles", allCultivationStyles);
-
         return response;
     }
 
@@ -90,7 +76,9 @@ public class PlotController {
             Plot newPlot = new Plot();
             String soilMakeup = form.getSoilMakeup();
             String cultivationStyle = form.getCultivationStyle();
-            newPlot.setUserId(form.getUserId());
+            User steward = userRepository.findById(form.getUserId());
+            newPlot.setUserId(steward.getId());
+            newPlot.setUserFullname(steward.getFirstName() + " " + steward.getLastName());
             if (soilMakeup!=null){
                 newPlot.setSoilMakeup(soilMakeup);
             }

@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "plots")
 public class Plot {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -26,6 +25,9 @@ public class Plot {
 
     @Column(name = "soil_makeup")
     private String soilMakeup;
+
+    @Column(name = "user_fullname")
+    private String userFullname;
 
     @Column(name = "cultivation_style")
     private String cultivationStyle;

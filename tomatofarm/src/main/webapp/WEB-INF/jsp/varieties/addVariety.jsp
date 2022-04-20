@@ -18,7 +18,7 @@
                 <option value="${categories}">${categories}</option>
             </c:forEach>
         </select>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
     <p><strong>* required fields</strong></p>
     <c:if test="${bindingResult.hasErrors()}">
