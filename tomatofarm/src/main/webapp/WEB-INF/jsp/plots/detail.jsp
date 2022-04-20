@@ -33,7 +33,32 @@
             </tbody>
         </table>
     <hr>
+    <form>
+        <h4>Add plant to plot</h4>
+        <label for="varietyName">Choose variety:</label>
+        <select name="varietyName" id="varietyName">
+            <c:forEach items="${varieties}" var="variety" >
+                <option value="${variety.id}">${variety.varietyName}</option>
+            </c:forEach>
+        </select>
+        <label for="plantsTotal">Quantity:</label>
+        <input type="number" name="plantsTotal" id="plantsTotal" min="1" max="1000" placeholder="0" value="${form.plantsTotal}">
+    </form>
     <h2>Plants</h2>
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://www.seedsavers.org/site/img/seo-images/0981A-speckled-roma-tomato-organic.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Name: speckled roman</h5>
+            <p class="card-text">Category: roma</p>
+            <p class="card-text">Color: red-orange</p>
+            <form>
+                <p class="card-text">Qty: 5</p>
+                <input type="number" name="plantsInPlotQty" id="plantsInPlotQty" min="1" max="1000" placeholder="0" value="${form.plantsInPlotQty}">
+                <button class="btn btn-secondary">Save</button>
+            </form>
+<%--            <a href="#" class="btn btn-primary">Go somewhere</a>--%>
+        </div>
+    </div>
     <a href="/plots/allPlots"><button class="btn btn-primary">Back to list</button></a>
 </div>
 

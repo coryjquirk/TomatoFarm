@@ -19,4 +19,6 @@ public class VarietyFormBean {
 
     @NotEmpty(message="You must select a category")
     private String category;
+
+    private String imageUrl;
 }

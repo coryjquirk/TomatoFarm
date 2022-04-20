@@ -20,7 +20,7 @@
                 </h3>
             </div>
         </a>
-        <a href="/varieties/allVarieties">
+        <a href="/varieties/grid">
             <div class="homeLauncher">
                 <h3>
                     <span>Tomato Varieties</span>

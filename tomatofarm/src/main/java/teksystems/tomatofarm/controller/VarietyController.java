@@ -33,6 +33,26 @@ public class VarietyController {
         response.addObject("form", form);
         return response;
     }
+    @RequestMapping(value = "/varieties/grid", method = RequestMethod.GET)
+    public ModelAndView varietiesGrid() throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("varieties/grid");
+        List<Variety> allVarieties = varietyRepository.findAll();
+        response.addObject("varieties", allVarieties);
+        VarietyFormBean form = new VarietyFormBean();
+        response.addObject("form", form);
+        return response;
+    }
+    @RequestMapping(value = "/varieties/list", method = RequestMethod.GET)
+    public ModelAndView varietiesList() throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("varieties/list");
+        List<Variety> allVarieties = varietyRepository.findAll();
+        response.addObject("varieties", allVarieties);
+        VarietyFormBean form = new VarietyFormBean();
+        response.addObject("form", form);
+        return response;
+    }
     @RequestMapping(value = "/varieties/addVariety", method = RequestMethod.GET)
     public ModelAndView addVariety() throws Exception {
         ModelAndView response = new ModelAndView();
@@ -41,7 +61,6 @@ public class VarietyController {
         response.setViewName("varieties/addVariety");
         return response;
     }
-
     @RequestMapping(value = "/variety/varietySubmit", method = {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView submitVariety(@Valid VarietyFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -57,12 +76,16 @@ public class VarietyController {
             return response;
         } else {
             Variety newVariety = new Variety();
+            String newVarietyUrl = form.getImageUrl();
             newVariety.setVarietyName(form.getVarietyName());
             newVariety.setColor(form.getColor());
             newVariety.setCategory(form.getCategory());
+            if (newVarietyUrl!=null){
+                newVariety.setImageUrl(newVarietyUrl);
+            }
             varietyRepository.save(newVariety);
         }
-        response.setViewName("redirect:/varieties/allVarieties");
+        response.setViewName("redirect:/varieties/grid");
         return response;
     }
 }

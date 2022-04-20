@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.tomatofarm.database.dao.PlotDAO;
 import teksystems.tomatofarm.database.dao.UserDAO;
+import teksystems.tomatofarm.database.dao.VarietyDAO;
 import teksystems.tomatofarm.database.entity.Plot;
 import teksystems.tomatofarm.database.entity.User;
 import teksystems.tomatofarm.database.entity.UserRole;
+import teksystems.tomatofarm.database.entity.Variety;
 import teksystems.tomatofarm.formbean.EditUserFormBean;
 import teksystems.tomatofarm.formbean.PlotEditFormBean;
 import teksystems.tomatofarm.formbean.PlotFormBean;
@@ -29,10 +31,10 @@ public class PlotController {
 
     @Autowired
     private PlotDAO plotRepository;
-
     @Autowired
     private UserDAO userRepository;
-
+    @Autowired
+    private VarietyDAO varietyRepository;
     @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
@@ -98,10 +100,12 @@ public class PlotController {
         response.setViewName("plots/detail");
 
         Plot plotToDetail = plotRepository.findById(plotId);
-
+        List<Variety> allVarieties = varietyRepository.findAll();
+        response.addObject("varieties", allVarieties);
         response.addObject("plot", plotToDetail);
         return response;
     }
+    //TODO: write method that serves up plants depending on specified plot.
     @GetMapping("/plots/editPlot/{plotId}")
     public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();

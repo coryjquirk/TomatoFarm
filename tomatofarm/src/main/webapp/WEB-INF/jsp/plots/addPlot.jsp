@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp" />
     <div class="mainContent">
@@ -25,7 +26,7 @@
                 </c:forEach>
             </select>
             <label for="spacesTotal">Total spaces:*</label>
-            <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" value="${form.spacesTotal}">
+            <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" placeholder="0" value="${form.spacesTotal}">
             <button type="submit" class="btn btn-success" id="plotSBtn">Submit</button>
         </form>
         <p><strong>* required fields</strong></p>
@@ -39,7 +40,7 @@
         <sec:authorize access="!hasAuthority('ADMIN')">
             <p>Must be logged in as Admin to add a new plot.</p>
             <a href="/index">
-                <button class="btn-primary">Home</button>
+                <button class="btn btn-primary">Home</button>
             </a>
         </sec:authorize>
         <hr>
