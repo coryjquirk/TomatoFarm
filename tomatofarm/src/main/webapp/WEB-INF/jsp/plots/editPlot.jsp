@@ -12,19 +12,19 @@
             <input type="hidden" name="id" value="${form.id}">
 
             <label for="userId">User:</label>
-            <select name="userId" id="userId">
+            <select class="form-select" name="userId" id="userId">
                 <c:forEach items="${allUsers}" var="allUsers">
                     <option value="${allUsers.id}">${allUsers.firstName} ${allUsers.lastName}</option>
                 </c:forEach>
             </select>
             <label for="soilMakeup">Soil makeup:</label>
-            <select name="soilMakeup" id="soilMakeup">
+            <select class="form-select" name="soilMakeup" id="soilMakeup">
                 <c:forEach items="${allSoils}" var="allSoils" >
                     <option value="${allSoils}">${allSoils}</option>
                 </c:forEach>
             </select>
             <label for="cultivationStyle">Cultivation style:</label>
-            <select name="cultivationStyle" id="cultivationStyle">
+            <select class="form-select" name="cultivationStyle" id="cultivationStyle">
                 <c:forEach var="allCultivationStyles" items="${allCultivationStyles}">
                     <option value="${allCultivationStyles}">${allCultivationStyles}</option>
                 </c:forEach>
@@ -33,8 +33,7 @@
             <label for="spacesTotal">Total spaces:</label>
             <p>(must be greater than # of spaces currently occupied by plants)</p>
             <input type="number" name="spacesTotal" id="spacesTotal" min="1" max="1000" value="${form.spacesTotal}">
-            <button type="submit" class="btn btn-primary" id="plotSBtn">Submit</button>
-
+            <button type="submit" class="btn btn-success" id="plotSBtn">Submit</button>
         </form>
         <c:if test="${bindingResult.hasErrors()}">
             <c:forEach items="${bindingResult.getAllErrors()}" var="error">
@@ -49,7 +48,8 @@
         </a>
     </sec:authorize>
     <hr>
-    <a href="/plots/allPlots"><button class="btn btn-primary">Back</button></a>
+    <a href="/plots/detail/${form.id}"><button class="btn btn-primary">Back to plot detail</button></a>
+    <a href="/plots/allPlots"><button class="btn btn-primary">Back to all plots</button></a>
 </div>
 
 <jsp:include page="../include/footer.jsp"/>

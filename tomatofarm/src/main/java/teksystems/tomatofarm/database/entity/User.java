@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import teksystems.tomatofarm.database.dao.UserRoleDAO;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -42,9 +43,8 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();
 
-    //TODO: create attribute - list of strings of user's roles
-    //use @OneToMany annotation?
-//    private Set<UserRole> userRoles; // <-- maybe this
-//    private List<UserRole> userRoles;// <-- or maybe this since all we need is strings
-//    Java is saying basic attribute type can't be container though
+//    Don't really need this right now,
+//    I always just grab List with plotDAO.findByUserId
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Plot> userPlots = new ArrayList<>();
 }

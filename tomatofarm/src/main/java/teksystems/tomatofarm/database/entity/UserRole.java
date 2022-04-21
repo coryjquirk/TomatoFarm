@@ -3,6 +3,7 @@ package teksystems.tomatofarm.database.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,4 +20,8 @@ public class UserRole {
 
     @Column(name = "user_role")
     private String userRole;
+
+    @Column(name = "create_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate = new Date();
 }

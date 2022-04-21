@@ -21,12 +21,15 @@ USE `tomatodb` ;
 -- Table `tomatodb`.`varieties`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`varieties` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `variety_name` VARCHAR(100) NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
   `color` VARCHAR(100) NULL DEFAULT NULL,
-  `category` VARCHAR(30) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
+  `image_url` VARCHAR(3000) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `variety_name` (`variety_name` ASC) VISIBLE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 81
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -35,11 +38,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `tomatodb`.`plants`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`plants` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `variety_id` BIGINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `variety_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `FK_plants_variety_id_idx` (`variety_id` ASC) VISIBLE,
-  CONSTRAINT `FK_plants_variety_id`
+  INDEX `FK_plants_varieties_idx` (`variety_id` ASC) VISIBLE,
+  CONSTRAINT `FK_plants_varieties`
     FOREIGN KEY (`variety_id`)
     REFERENCES `tomatodb`.`varieties` (`id`))
 ENGINE = InnoDB
@@ -51,17 +54,16 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `tomatodb`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`users` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
-  `phone` VARCHAR(30) NULL DEFAULT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `create_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -70,19 +72,20 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `tomatodb`.`plots`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`plots` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `user_id` BIGINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
   `soil_makeup` VARCHAR(1000) NULL DEFAULT NULL,
   `cultivation_style` VARCHAR(1000) NULL DEFAULT NULL,
   `spaces_total` INT NOT NULL,
   `spaces_taken` INT NOT NULL,
+  `user_fullname` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `FK_plots_user_id_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `FK_plots_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `tomatodb`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 22
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -91,9 +94,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `tomatodb`.`plots_plants`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`plots_plants` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `plot_id` BIGINT NULL DEFAULT NULL,
-  `plant_id` BIGINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `plot_id` INT NOT NULL,
+  `plant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `FK_plots_plants_plot_id_idx` (`plot_id` ASC) VISIBLE,
   INDEX `FK_plots_plants_plant_id_idx` (`plant_id` ASC) VISIBLE,
@@ -112,15 +115,17 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `tomatodb`.`user_roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tomatodb`.`user_roles` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `user_id` BIGINT NOT NULL,
-  `user_role` BIGINT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `user_role` VARCHAR(45) NOT NULL,
+  `create_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `FK_user_roles_user_id_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `FK_user_roles_user_id`
     FOREIGN KEY (`user_id`)
     REFERENCES `tomatodb`.`users` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 57
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

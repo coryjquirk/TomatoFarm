@@ -10,37 +10,37 @@
             <input type="hidden" name="id" value="${form.id}">
 
             <label for="emailId">Email</label>
-            <input type="text" name="email" id="emailId" value="${form.email}">
+            <input type="text" name="email" id="emailId" value="${form.email}" placeholder="email">
             <c:forEach items='${bindingResult.getFieldErrors("email")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
 
             <label for="firstNameId">First name:</label>
-            <input type="text" name="firstName" id="firstNameId" value="${form.firstName}">
+            <input type="text" name="firstName" id="firstNameId" value="${form.firstName}" placeholder="first name">
             <c:forEach items='${bindingResult.getFieldErrors("firstName")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
 
             <label for="lastNameId">Last name:</label>
-            <input type="text" name="lastName" id="lastNameId" value="${form.lastName}">
+            <input type="text" name="lastName" id="lastNameId" value="${form.lastName}" placeholder="last name">
             <c:forEach items='${bindingResult.getFieldErrors("lastName")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
 
             <label for="passwordId">Password:</label>
-            <input type="text" name="password" id="passwordId" value="${form.password}">
+            <input type="password" name="password" id="passwordId" value="${form.password}" placeholder="password">
             <c:forEach items='${bindingResult.getFieldErrors("password")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-
             <label for="confirmPasswordId">Confirm password:</label>
-            <input type="text"
-                   name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}">
+            <input type="password"
+                   name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}" placeholder="confirm password">
             <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
             <p>* all fields required</p>
             <button class="btn btn-primary" type="submit">Submit</button>
+            <p>You'll be redirected to the login page upon successful registration.</p>
         </form>
         <c:if test="${bindingResult.hasErrors()}">
             <c:forEach items="${bindingResult.getAllErrors()}" var="error">

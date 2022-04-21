@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import teksystems.tomatofarm.database.dao.PlotDAO;
-import teksystems.tomatofarm.database.dao.UserDAO;
-import teksystems.tomatofarm.database.entity.Plot;
-import teksystems.tomatofarm.database.entity.User;
-import teksystems.tomatofarm.database.entity.UserRole;
-import teksystems.tomatofarm.formbean.EditUserFormBean;
+import teksystems.tomatofarm.database.dao.*;
+import teksystems.tomatofarm.database.entity.*;
 import teksystems.tomatofarm.formbean.PlotEditFormBean;
 import teksystems.tomatofarm.formbean.PlotFormBean;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -29,43 +26,34 @@ public class PlotController {
 
     @Autowired
     private PlotDAO plotRepository;
-
     @Autowired
     private UserDAO userRepository;
+    @Autowired
+    private VarietyDAO varietyRepository;
+    @Autowired
+    private PlantDAO plantRepository;
+    @Autowired
+    PlotsPlantsDAO plotsPlantsRepository;
 
     @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
-
         List<Plot> allPlots = plotRepository.findAll();
-        List<User> allUsers = userRepository.findAll();
-//        TODO: add some code here to populate User ID with people names?
-
-        //for each Plot in allPlots:
-            //get user by Plot.userId
-            //add first and last name
-        for (Plot plot : allPlots){
-
-        }
         response.setViewName("/plots/allPlots");
         response.addObject("allPlots", allPlots);
-
         return response;
     }
 
     @RequestMapping(value = "/plots/addPlot", method = RequestMethod.GET)
     public ModelAndView addPlot() throws Exception {
         ModelAndView response = new ModelAndView();
-
         List<User> allUsers = userRepository.findAll();
         List<String> allSoils = plotRepository.findDistinctSoil();
         List<String> allCultivationStyles = plotRepository.findDistinctCultivationStyle();
-
         response.setViewName("/plots/addPlot");
         response.addObject("allSoils", allSoils);
         response.addObject("allUsers", allUsers);
         response.addObject("allCultivationStyles", allCultivationStyles);
-
         return response;
     }
 
@@ -90,7 +78,9 @@ public class PlotController {
             Plot newPlot = new Plot();
             String soilMakeup = form.getSoilMakeup();
             String cultivationStyle = form.getCultivationStyle();
-            newPlot.setUserId(form.getUserId());
+            User steward = userRepository.findById(form.getUserId());
+            newPlot.setUserId(steward.getId());
+            newPlot.setUserFullname(steward.getFirstName() + " " + steward.getLastName());
             if (soilMakeup!=null){
                 newPlot.setSoilMakeup(soilMakeup);
             }
@@ -104,8 +94,31 @@ public class PlotController {
         response.setViewName("redirect:/plots/allPlots");
         return response;
     }
+    // TODO: define logic for add plant to plot with form on plots/detail/{userId}
+
+    @GetMapping("/plots/detail/{plotId}")
+    public ModelAndView plotDetail(@PathVariable("plotId") Integer plotId) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("plots/detail");
+        Plot plotToDetail = plotRepository.findById(plotId);
+        List<Variety> allVarieties = varietyRepository.findAll();
+        List<PlotsPlants> plotsPlants = plotsPlantsRepository.findPlotsPlantsByPlotId(plotId);
+        List<Plant> plantsInThisPlot = new ArrayList<>();
+        for (PlotsPlants plotPlantInPlot : plotsPlants){
+            Plant actualPlant = plotPlantInPlot.getPlant();
+            Variety actualVariety = varietyRepository.findById(actualPlant.getVarietyId());
+            actualPlant.setVarietyName(actualVariety.getVarietyName());
+            actualPlant.setImageUrl(actualVariety.getImageUrl());
+            actualPlant.setCategory(actualVariety.getCategory());
+            plantsInThisPlot.add(actualPlant);
+        }
+        response.addObject("plants", plantsInThisPlot);
+        response.addObject("allVarieties", allVarieties);
+        response.addObject("plot", plotToDetail);
+        return response;
+    }
     @GetMapping("/plots/editPlot/{plotId}")
-    public ModelAndView editUser(@PathVariable("plotId") Integer plotId) throws Exception {
+    public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("plots/editPlot");
 
@@ -142,7 +155,7 @@ public class PlotController {
         }
         Plot plotToEdit = plotRepository.findById(form.getId());
         Integer newSpaces = form.getSpacesTotal();
-
+        //TODO: adjust user first/last name upon edit.
         plotToEdit.setUserId(form.getUserId());
         plotToEdit.setSoilMakeup(form.getSoilMakeup());
         plotToEdit.setCultivationStyle(form.getCultivationStyle());

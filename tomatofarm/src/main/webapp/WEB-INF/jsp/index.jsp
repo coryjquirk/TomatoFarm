@@ -5,14 +5,7 @@
 
 <div class="mainContent">
     <sec:authorize access="isAuthenticated()">
-        <a href="/user/search">
-            <div class="homeLauncher">
-                <h3>
-                        <%--later this will be just OR also plots search?--%>
-                    <span>Search (Users/plots)</span>
-                </h3>
-            </div>
-        </a>
+<%--        TODO: "My Plots" page to show those assigned to the logged in user.--%>
         <a href="/plots/allPlots">
             <div class="homeLauncher">
                 <h3>
@@ -20,7 +13,7 @@
                 </h3>
             </div>
         </a>
-        <a href="/varieties/allVarieties">
+        <a href="/varieties/grid">
             <div class="homeLauncher">
                 <h3>
                     <span>Tomato Varieties</span>
@@ -31,6 +24,13 @@
             <div class="homeLauncher">
                 <h3>
                     <span>People</span>
+                </h3>
+            </div>
+        </a>
+        <a href="/user/search">
+            <div class="homeLauncher">
+                <h3>
+                    <span>Search (Users/plots)</span>
                 </h3>
             </div>
         </a>

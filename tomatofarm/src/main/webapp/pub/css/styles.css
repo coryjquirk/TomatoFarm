@@ -96,6 +96,9 @@ input, .btn {
   display: block;
   margin: 5px;
 }
+.form-select{
+  width: 60%;
+}
 #plotsDiv {
   padding: 30px;
   margin: 100px;
@@ -110,8 +113,51 @@ td {
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.7);
 }
+
+/*TODO: add hover effects to table rows*/
+/*TODO: add fades to page changes*/
 .btn-primary {
   background-color: #003bff;
+}
+.plantCard{
+  width: 275px;
+  height: 125px;
+  padding: 5px;
+  display: inline-flex;
+  margin: 5px;
+  position: relative;
+}
+.plantCard img{
+  height: 110px;
+  width: 110px;
+}
+#addPlantForm, .plantCard{
+  border: black 1px solid;
+  border-radius: 5px;
+  background-color: #ece4d3;
+}
+#addPlantForm{
+  padding: 10px;
+  margin: 0px 0px 5px 0px;
+}
+#plantIdInCard{
+  color: #6c6c6c;
+  position: absolute;
+  right: 15px;
+}
+#deleteBtn{
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.imgCol{
+  display: inline-flex;
+  height: 100%;
+  margin: 0px 5px 0px 5px;
+}
+.infoCol{
+  padding: 5px 5px 5px 5px;
 }
 #hiddenFNError {
   display: none;
@@ -197,6 +243,20 @@ td {
 #heirloomBoiz{
   height: 30%;
   width: 30%;
+}
+.card {
+  width: 18rem;
+  display: inline-block;
+  margin: 5px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}
+.varietyPhoto{
+  height: 150px;
+  width: 150px;
 }
 #snackbar {
   visibility: hidden;

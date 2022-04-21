@@ -34,8 +34,18 @@
             <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">Save</button>
         </form>
+        <hr>
+        <h3>Current permissions:</h3>
+        <p>
+            <c:forEach var="role" items="${userRoles}">
+                <button class="btn btn-danger">${role.userRole}</button>
+            </c:forEach>
+        </p>
+        <a href="/admin/userEdit/${user.id}">
+            <button class="btn btn-secondary">User detail page</button>
+        </a>
         <c:if test="${bindingResult.hasErrors()}">
             <c:forEach items="${bindingResult.getAllErrors()}" var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
