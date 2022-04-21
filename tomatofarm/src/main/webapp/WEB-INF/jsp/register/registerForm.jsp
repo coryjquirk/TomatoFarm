@@ -32,7 +32,6 @@
             <c:forEach items='${bindingResult.getFieldErrors("password")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-<%--            TODO: mask password characters in input box.--%>
             <label for="confirmPasswordId">Confirm password:</label>
             <input type="password"
                    name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}" placeholder="confirm password">

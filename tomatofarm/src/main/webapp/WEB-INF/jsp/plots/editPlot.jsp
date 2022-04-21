@@ -47,8 +47,8 @@
             <button class="btn-primary">Home</button>
         </a>
     </sec:authorize>
-    <a href="/plots/detail/${form.id}"><button class="btn btn-primary">Back to plot detail</button></a>
     <hr>
+    <a href="/plots/detail/${form.id}"><button class="btn btn-primary">Back to plot detail</button></a>
     <a href="/plots/allPlots"><button class="btn btn-primary">Back to all plots</button></a>
 </div>
 

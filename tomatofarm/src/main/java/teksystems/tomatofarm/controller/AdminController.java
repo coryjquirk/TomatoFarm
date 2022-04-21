@@ -120,6 +120,7 @@ public class AdminController {
         Integer userToEditId = userToEdit.getId();
         List<UserRole> userRoles = userRoleRepository.findByUserId(userToEditId);
         List<String> roleStrings = new ArrayList<>();
+        List<Plot> userPlots = plotRepository.findByUserId(userToEditId);
         for(UserRole userRole : userRoles){
             //adds user role strings to ArrayList of userRoles defined above.
             roleStrings.add(userRole.getUserRole());
@@ -132,6 +133,20 @@ public class AdminController {
         }
         if (newLastName!=null){
             userToEdit.setLastName(newLastName);
+        }
+        if (newLastName != null || newLastName != null){
+            String firstNameForPlot = userToEdit.getFirstName();
+            String lastNameForPlot = userToEdit.getLastName();
+            for (Plot plot : userPlots){
+                if (newLastName != null){
+                    firstNameForPlot = newFirstName;
+                }
+                if (newLastName != null){
+                    lastNameForPlot = newLastName;
+                }
+                plot.setUserFullname(firstNameForPlot + " " + lastNameForPlot);
+                log.debug("New full name for plot: "+firstNameForPlot + " " + lastNameForPlot);
+            }
         }
         Boolean adminChecked = form.isAdmin();
         Boolean isAlreadyAdmin = roleStrings.contains("ADMIN");

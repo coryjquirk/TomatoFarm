@@ -122,17 +122,23 @@ td {
 .plantCard{
   width: 275px;
   height: 125px;
-  border: black 1px solid;
-  border-radius: 5px;
   padding: 5px;
   display: inline-flex;
-  background-color: #ece4d3;
   margin: 5px;
   position: relative;
 }
 .plantCard img{
   height: 110px;
   width: 110px;
+}
+#addPlantForm, .plantCard{
+  border: black 1px solid;
+  border-radius: 5px;
+  background-color: #ece4d3;
+}
+#addPlantForm{
+  padding: 10px;
+  margin: 0px 0px 5px 0px;
 }
 #plantIdInCard{
   color: #6c6c6c;

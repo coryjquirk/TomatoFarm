@@ -35,7 +35,7 @@
         </tbody>
     </table>
     <hr>
-    <form>
+    <form id = "addPlantForm">
 <%--        TODO: define controller logic for this form to add plant to plot.--%>
         <h4>Add plant to plot</h4>
         <label for="varietyName">Choose variety:</label>
@@ -49,9 +49,13 @@
                value="${form.plantsTotal}">
         <button class="btn btn-secondary">Add</button>
     </form>
+    <hr>
     <%--    TODO: add logic so that only assigned user can edit plants.--%>
     <h3>Plants in this plot</h3>
-    <c:forEach items="${plants}" var="plant">
+<c:if test="${empty plants}">
+    <p>Use form above to add a plant.</p>
+</c:if>
+<c:forEach items="${plants}" var="plant">
         <div class="plantCard">
             <div class="imgCol">
                 <img src="${plant.imageUrl}">
@@ -65,7 +69,6 @@
             </form>
         </div>
     </c:forEach>
-
     <hr>
     <a href="/plots/allPlots">
         <button class="btn btn-primary">Back to plot list</button>

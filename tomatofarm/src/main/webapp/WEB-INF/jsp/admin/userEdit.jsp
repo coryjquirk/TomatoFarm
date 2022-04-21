@@ -52,7 +52,7 @@
     </form>
     <hr>
     <sec:authorize access="hasAuthority('ADMIN')">
-        <h3>Edit user:</h3>
+        <h3>Edit user: (admin only)</h3>
         <p>${user.firstName} ${user.lastName}</p>
         <form action="/admin/userSubmit" method="get">
             <input type="hidden" name="id" value="${form.id}">

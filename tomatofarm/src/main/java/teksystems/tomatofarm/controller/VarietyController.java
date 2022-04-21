@@ -72,6 +72,7 @@ public class VarietyController {
             response.addObject("bindingResult", bindingResult);
             List<String> categories = varietyRepository.findDistinctCategory();
             response.addObject("categories", categories);
+            //redirects to addVariety page with relevant error messages
             response.setViewName("varieties/addVariety");
             return response;
         } else {

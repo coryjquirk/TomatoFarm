@@ -155,7 +155,7 @@ public class PlotController {
         }
         Plot plotToEdit = plotRepository.findById(form.getId());
         Integer newSpaces = form.getSpacesTotal();
-
+        //TODO: adjust user first/last name upon edit.
         plotToEdit.setUserId(form.getUserId());
         plotToEdit.setSoilMakeup(form.getSoilMakeup());
         plotToEdit.setCultivationStyle(form.getCultivationStyle());

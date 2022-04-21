@@ -2,7 +2,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
-    <h2>All tomato varieties</h2>
+    <h2>Tomato varieties catalog</h2>
     <a href="addVariety">
         <button class="btn btn-primary">Add new variety</button>
     </a>

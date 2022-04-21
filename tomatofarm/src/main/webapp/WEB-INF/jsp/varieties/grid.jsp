@@ -2,7 +2,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
-    <h2>All tomato varieties</h2>
+    <h2>Tomato varieties catalog</h2>
     <a href="addVariety">
         <button class="btn btn-primary">Add new variety</button>
     </a>
@@ -17,7 +17,6 @@
                 <h5 class="card-title">Name: ${variety.varietyName}</h5>
                 <p class="card-text">Category: ${variety.category}</p>
                 <p class="card-text">Color: ${variety.color}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
     </c:forEach>
