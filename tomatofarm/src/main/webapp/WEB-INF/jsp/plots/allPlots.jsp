@@ -30,8 +30,6 @@
                 <td>${plot.spacesTotal}</td>
                 <td><a href="/plots/detail/${plot.id}"><button class="btn btn-primary">View</button></a></td>
             </tr>
-<%--            TODO: plot detail/edit button to see plants within plot
-                ability to add plants of certain varieties, or change column values. --%>
         </c:forEach>
         </tbody>
     </table>

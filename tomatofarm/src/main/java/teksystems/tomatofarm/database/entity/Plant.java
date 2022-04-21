@@ -27,4 +27,25 @@ public class Plant {
     @ToString.Exclude
     @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY )
     private List<PlotsPlants> plotsPlants = new ArrayList();
+
+    @Transient
+    private String varietyName;
+
+    @Transient
+    private String imageUrl;
+
+    @Transient
+    private String category;
+
+    public void setVarietyName(String varietyName) {
+        this.varietyName = varietyName;
+    }
+
+    public void setImageUrl(String imageUrl){
+        this.imageUrl = imageUrl;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
+    }
 }

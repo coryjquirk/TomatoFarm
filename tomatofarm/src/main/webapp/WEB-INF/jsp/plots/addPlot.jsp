@@ -8,19 +8,19 @@
         <form action="/plots/plotSubmit" method="GET" id="plotForm">
             <input type="hidden" name="id" value="${form.id}">
             <label for="userId">User:*</label>
-            <select name="userId" id="userId">
+            <select class="form-select" name="userId" id="userId">
                 <c:forEach items="${allUsers}" var="allUsers">
                     <option value="${allUsers.id}">${allUsers.firstName} ${allUsers.lastName}</option>
                 </c:forEach>
             </select>
             <label for="soilMakeup">Soil makeup:</label>
-            <select name="soilMakeup" id="soilMakeup">
+            <select class="form-select" name="soilMakeup" id="soilMakeup">
                 <c:forEach items="${allSoils}" var="allSoils" >
                     <option value="${allSoils}">${allSoils}</option>
                 </c:forEach>
             </select>
             <label for="cultivationStyle">Cultivation style:</label>
-            <select name="cultivationStyle" id="cultivationStyle">
+            <select class="form-select" name="cultivationStyle" id="cultivationStyle">
                 <c:forEach var="allCultivationStyles" items="${allCultivationStyles}">
                     <option value="${allCultivationStyles}">${allCultivationStyles}</option>
                 </c:forEach>

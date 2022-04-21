@@ -13,7 +13,7 @@
         <input type="text" name="color" id="color" value="${form.color}" placeholder="color">
 
         <label for="category">Category:*</label>
-        <select name="category" id="category">
+        <select class="form-select" name="category" id="category">
             <c:forEach var="categories" items="${categories}">
                 <option value="${categories}">${categories}</option>
             </c:forEach>

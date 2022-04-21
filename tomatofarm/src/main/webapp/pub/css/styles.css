@@ -96,6 +96,9 @@ input, .btn {
   display: block;
   margin: 5px;
 }
+.form-select{
+  width: 60%;
+}
 #plotsDiv {
   padding: 30px;
   margin: 100px;
@@ -115,6 +118,40 @@ td {
 /*TODO: add fades to page changes*/
 .btn-primary {
   background-color: #003bff;
+}
+.plantCard{
+  width: 275px;
+  height: 125px;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-flex;
+  background-color: #ece4d3;
+  margin: 5px;
+  position: relative;
+}
+.plantCard img{
+  height: 110px;
+  width: 110px;
+}
+#plantIdInCard{
+  color: #6c6c6c;
+  position: absolute;
+  right: 15px;
+}
+#deleteBtn{
+  display: block;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.imgCol{
+  display: inline-flex;
+  height: 100%;
+  margin: 0px 5px 0px 5px;
+}
+.infoCol{
+  padding: 5px 5px 5px 5px;
 }
 #hiddenFNError {
   display: none;

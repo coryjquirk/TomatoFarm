@@ -42,7 +42,7 @@
     <h3>Reassign a plot to this user</h3>
     <form action="/admin/assignPlot" method="get">
         <input type="hidden" name="userId" value="${user.id}">
-        <select  name="plotId"  id="plotId">
+        <select class="form-select" name="plotId"  id="plotId">
             <c:forEach var="plot" items="${allPlots}">
                 <option value="${plot.id}">#${plot.id}, ${plot.soilMakeup}, ${plot.cultivationStyle}, assigned
                     to: ${plot.userFullname}</option>
@@ -68,12 +68,13 @@
             <c:forEach items='${bindingResult.getFieldErrors("lastName")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-            <p>Current permissions:
-                <c:forEach var="role" items="${userRoles}">
-                    ${role.userRole}
+            <h3>Current permissions:</h3>
+            <p>
+            <c:forEach var="role" items="${userRoles}">
+                    <button class="btn btn-danger">${role.userRole}</button>
                 </c:forEach>
             </p>
-            <h4>Edit permissions</h4>
+            <h4>Edit permissions:</h4>
             <label for="adminCheckbox">Admin permissions?</label>
             <form:checkbox path="form.admin" id="adminCheckbox"/>
             <button class="btn btn-success" type="submit">Submit</button>

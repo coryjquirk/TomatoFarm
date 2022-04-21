@@ -13,7 +13,9 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.tomatofarm.database.dao.UserDAO;
+import teksystems.tomatofarm.database.dao.UserRoleDAO;
 import teksystems.tomatofarm.database.entity.User;
+import teksystems.tomatofarm.database.entity.UserRole;
 import teksystems.tomatofarm.formbean.AccountEditFormBean;
 import teksystems.tomatofarm.formbean.RegisterFormBean;
 import teksystems.tomatofarm.service.UserService;
@@ -32,6 +34,8 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRoleDAO userRoleRepository;
 
     @GetMapping("/user/edit/{userId}")
     public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
@@ -78,12 +82,14 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByEmail(username);
+        List<UserRole> userRoles = userRoleRepository.findByUserId(user.getId());
 
         AccountEditFormBean form = new AccountEditFormBean();
         form.setFirstName(user.getFirstName());
         form.setLastName(user.getLastName());
+        response.addObject("user", user);
         response.addObject("form", form);
-
+        response.addObject("userRoles", userRoles);
         return response;
     }
 

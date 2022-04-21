@@ -11,4 +11,6 @@ import java.util.List;
 public interface VarietyDAO extends JpaRepository<Variety, Long> {
     @Query("SELECT DISTINCT v.category FROM Variety v")
     List<String> findDistinctCategory();
+
+    Variety findById(Integer id);
 }
