@@ -58,7 +58,7 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value="/user/search", method= RequestMethod.GET )
+    @GetMapping(value="/user/search")
     public ModelAndView search(@RequestParam(value = "firstName", required = false) String firstName) {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/search");
@@ -74,7 +74,7 @@ public class UserController {
 
         return response;
     }
-    @RequestMapping(value="/user/accountEditForm", method = RequestMethod.GET )
+    @GetMapping(value="/user/accountEditForm")
     public ModelAndView accountEdit() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/accountEditForm");

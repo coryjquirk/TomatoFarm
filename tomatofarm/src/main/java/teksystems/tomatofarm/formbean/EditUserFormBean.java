@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 @Getter
@@ -18,8 +19,10 @@ public class EditUserFormBean {
     @Pattern(regexp = "[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Email format invalid in regex check")
     private String email;
 
+    @NotEmpty(message = "First name must not be empty.")
     private String firstName;
 
+    @NotEmpty(message = "Last name must not be empty.")
     private String lastName;
 
     private Integer role;

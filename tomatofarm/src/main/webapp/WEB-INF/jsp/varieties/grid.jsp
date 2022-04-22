@@ -12,7 +12,12 @@
     <hr>
     <c:forEach var="variety" items="${varieties}">
         <div class="card">
-            <img class="card-img-top" src="${variety.imageUrl}" alt="Card image cap">
+            <c:if test="${empty variety.imageUrl}">
+                <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx-dxcV7IDLSkLS5ncGbsMT2KyphBDlargBg&usqp=CAU" alt="variety photo">
+            </c:if>
+            <c:if test="${not empty variety.imageUrl}">
+                <img class="card-img-top" src="${variety.imageUrl}" alt="variety photo">
+            </c:if>
             <div class="card-body">
                 <h5 class="card-title">Name: ${variety.varietyName}</h5>
                 <p class="card-text">Category: ${variety.category}</p>
