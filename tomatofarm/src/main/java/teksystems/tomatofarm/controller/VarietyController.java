@@ -2,9 +2,12 @@ package teksystems.tomatofarm.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +18,7 @@ import teksystems.tomatofarm.formbean.VarietyFormBean;
 import javax.validation.Valid;
 import java.util.List;
 
+@PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
 @Slf4j
 @Controller
 public class VarietyController {
@@ -23,7 +27,7 @@ public class VarietyController {
     private VarietyDAO varietyRepository;
 
 
-    @RequestMapping(value = "/varieties/allVarieties", method = RequestMethod.GET)
+    @GetMapping(value = "/varieties/allVarieties")
     public ModelAndView allVarieties() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("varieties/allVarieties");
@@ -33,7 +37,7 @@ public class VarietyController {
         response.addObject("form", form);
         return response;
     }
-    @RequestMapping(value = "/varieties/grid", method = RequestMethod.GET)
+    @GetMapping(value = "/varieties/grid")
     public ModelAndView varietiesGrid() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("varieties/grid");
@@ -43,7 +47,7 @@ public class VarietyController {
         response.addObject("form", form);
         return response;
     }
-    @RequestMapping(value = "/varieties/list", method = RequestMethod.GET)
+    @GetMapping(value = "/varieties/list")
     public ModelAndView varietiesList() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("varieties/list");
@@ -53,7 +57,7 @@ public class VarietyController {
         response.addObject("form", form);
         return response;
     }
-    @RequestMapping(value = "/varieties/addVariety", method = RequestMethod.GET)
+    @GetMapping(value = "/varieties/addVariety")
     public ModelAndView addVariety() throws Exception {
         ModelAndView response = new ModelAndView();
         List<String> categories = varietyRepository.findDistinctCategory();
@@ -61,7 +65,8 @@ public class VarietyController {
         response.setViewName("varieties/addVariety");
         return response;
     }
-    @RequestMapping(value = "/variety/varietySubmit", method = {RequestMethod.POST,RequestMethod.GET})
+
+    @PostMapping(value = "/variety/varietySubmit")
     public ModelAndView submitVariety(@Valid VarietyFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
         String newVarietyName = form.getVarietyName();

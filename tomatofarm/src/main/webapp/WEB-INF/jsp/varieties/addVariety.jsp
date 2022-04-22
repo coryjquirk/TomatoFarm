@@ -3,7 +3,7 @@
 <jsp:include page="../include/header.jsp"/>
 <div class="mainContent">
     <h1>Add Variety</h1>
-    <form action="/variety/varietySubmit" method="GET">
+    <form action="/variety/varietySubmit" method="POST">
         <input type="hidden" name="id" value="${form.id}">
         <label for="varietyName">Variety name:*</label>
         <input type="text" name="varietyName" id="varietyName" value="${form.varietyName}" placeholder="variety name">
@@ -27,6 +27,5 @@
             <div style="color:red;">${error.getDefaultMessage()}</div>
         </c:forEach>
     </c:if>
-
 </div>
 <jsp:include page="../include/footer.jsp"/>

@@ -27,7 +27,14 @@
                 <td>${variety.varietyName}</td>
                 <td>${variety.category}</td>
                 <td>${variety.color}</td>
-                <td><img src="${variety.imageUrl}" class="varietyPhoto" alt="variety photo"/></td>
+                <td>
+                <c:if test="${empty variety.imageUrl}">
+                    <img class="varietyPhoto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx-dxcV7IDLSkLS5ncGbsMT2KyphBDlargBg&usqp=CAU" alt="Card image cap">
+                </c:if>
+                <c:if test="${not empty variety.imageUrl}">
+                    <img class="varietyPhoto" src="${variety.imageUrl}" alt="variety photo">
+                </c:if>
+                </td>
             </tr>
         </c:forEach>
         </tbody>

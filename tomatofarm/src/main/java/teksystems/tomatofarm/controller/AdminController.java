@@ -2,6 +2,7 @@ package teksystems.tomatofarm.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -35,10 +36,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/directory", method = RequestMethod.GET)
     public ModelAndView directory() throws Exception {
         ModelAndView response = new ModelAndView();
-
         List<User> allUsers = userRepository.findAll();
-
-        //allUserRoles?
         List<UserRole> allUserRoles = userRoleRepository.findAll();
 
         response.setViewName("/admin/directory");
@@ -95,17 +93,21 @@ public class AdminController {
     //  @PreAuthorize("hasAuthority('ADMIN')")
     //  instate the above line.
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Transactional
     @RequestMapping(value = "/admin/userSubmit", method = { RequestMethod.POST, RequestMethod.GET})
     public ModelAndView editUserSubmit(@Valid EditUserFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
+        Integer userId = form.getId();
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
-                log.info(((FieldError) error).getField() + " " + error.getDefaultMessage());
+                log.debug(error.getDefaultMessage());
             }
+            //TODO: debug why bindingResult logs but won't display on page.
+            log.debug("User Id at hand: "+userId);
             response.addObject("form", form);
             response.addObject("bindingResult", bindingResult);
-            response.setViewName("/admin/userEdit/{userId}");
+            response.setViewName("redirect:/admin/userEdit/"+userId);
             return response;
         }
         User userToEdit = userRepository.findById(form.getId());
@@ -163,7 +165,7 @@ public class AdminController {
         }
         userRepository.save(userToEdit);
         log.info("Updated user info: "+form);
-        response.setViewName("redirect:/admin/directory");
+        response.setViewName("redirect:/admin/userEdit/"+userId);
         return response;
     }
 }

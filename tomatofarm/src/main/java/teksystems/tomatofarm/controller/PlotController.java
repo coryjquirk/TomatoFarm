@@ -2,6 +2,7 @@ package teksystems.tomatofarm.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -33,7 +34,7 @@ public class PlotController {
     @Autowired
     PlotsPlantsDAO plotsPlantsRepository;
 
-    @RequestMapping(value = "/plots/allPlots", method = RequestMethod.GET)
+    @GetMapping(value = "/plots/allPlots")
     public ModelAndView allPlots() throws Exception {
         ModelAndView response = new ModelAndView();
         List<Plot> allPlots = plotRepository.findAll();
@@ -42,7 +43,7 @@ public class PlotController {
         return response;
     }
 
-    @RequestMapping(value = "/plots/addPlot", method = RequestMethod.GET)
+    @GetMapping(value = "/plots/addPlot")
     public ModelAndView addPlot() throws Exception {
         ModelAndView response = new ModelAndView();
         List<User> allUsers = userRepository.findAll();
@@ -55,7 +56,8 @@ public class PlotController {
         return response;
     }
 
-    @RequestMapping(value = "/plots/plotSubmit", method = {RequestMethod.POST, RequestMethod.GET})
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping(value = "/plots/plotSubmit")
     public ModelAndView submitPlot(@Valid PlotFormBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
         if (bindingResult.hasErrors()){

@@ -5,7 +5,7 @@
 <div class="mainContent">
     <sec:authorize access="hasAuthority('ADMIN')">
         <h2>Add new plot</h2>
-        <form action="/plots/plotSubmit" method="GET" id="plotForm">
+        <form action="/plots/plotSubmit" method="POST" id="plotForm">
             <div style="margin-bottom: 10px;">
                 <input type="hidden" name="id" value="${form.id}">
                 <p>User:*</p>
