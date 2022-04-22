@@ -44,7 +44,7 @@ public class TestPlotDAO {
     @Test
     @Order(3)
     @Rollback(value = false)
-    public void getPlotList(){
+    public void getPlotListTest(){
         List<Plot> plotList = plotRepository.findAll();
         Assertions.assertThat(plotList.size()).isGreaterThan(0);
     }
