@@ -1,7 +1,6 @@
 package teksystems.tomatofarm.database.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

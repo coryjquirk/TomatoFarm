@@ -16,7 +16,12 @@ import teksystems.tomatofarm.database.entity.UserRole;
 import teksystems.tomatofarm.formbean.RegisterFormBean;
 
 import javax.validation.Valid;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -43,11 +48,7 @@ public class RegisterController {
     @RequestMapping(value = "/register/registerSubmit", method = { RequestMethod.POST, RequestMethod.GET})
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
-
-        log.info(form.toString());
-
         if (bindingResult.hasErrors()) {
-
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.debug(((FieldError)error).getField() + " " + error.getDefaultMessage());
             }
@@ -56,31 +57,45 @@ public class RegisterController {
             response.setViewName("register/registerForm");
             return response;
         }
-
         User user = userRepository.findById(form.getId());
-
         if (user == null) {
             user = new User();
         }
         String password = passwordEncoder.encode(form.getPassword());
-
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
         user.setPassword(password);
         user.setCreateDate(new Date());
-        log.info(form.toString());
-
         userRepository.save(user);
-
         Integer newUserId = userRepository.findByEmail(user.getEmail()).getId();
         UserRole newUserRole = new UserRole();
         newUserRole.setUserRole("USER");
         newUserRole.setUserId(newUserId);
         userRoleRepository.save(newUserRole);
-
         response.setViewName("redirect:/login/login");
 
+        try {
+            boolean deletesuccess = (new File("registerlog.txt")).delete();
+            if (deletesuccess){
+                log.info("registerlog.txt deleted.");
+            }
+            BufferedWriter output = new BufferedWriter(new FileWriter("registerlog.txt", true));
+            List<User> allUsers = userRepository.findAll();
+            output.write("Last updated: "+new Date()+"\n");
+            allUsers.forEach((User)-> {
+                try {
+                    output.write("ID: "+User.getId()+" "+User.getFirstName()+" "+User.getLastName()+" "+User.getEmail()+" "+User.getCreateDate()+"\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            output.flush();
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Register output has failed.");
+        }
         return response;
     }
 }
