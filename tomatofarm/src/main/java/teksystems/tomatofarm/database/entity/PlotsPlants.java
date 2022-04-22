@@ -16,11 +16,6 @@ public class PlotsPlants {
     @Column(name = "id")
     private Integer id;
 
-//    @Column(name = "plot_id")
-//    private Integer plotId;
-//
-//    @Column(name = "plant_id")
-//    private Integer plantId;
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "plot_id", nullable = false, updatable = true)

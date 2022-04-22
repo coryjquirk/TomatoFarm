@@ -6,16 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.tomatofarm.database.dao.*;
 import teksystems.tomatofarm.database.entity.*;
 import teksystems.tomatofarm.formbean.PlotEditFormBean;
 import teksystems.tomatofarm.formbean.PlotFormBean;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,7 +92,7 @@ public class PlotController {
         response.setViewName("redirect:/plots/allPlots");
         return response;
     }
-    // TODO: define logic for add plant to plot with form on plots/detail/{userId}
+    // TODO: define logic for add plant to plot with form on plots/detail/{plotId}
 
     @GetMapping("/plots/detail/{plotId}")
     public ModelAndView plotDetail(@PathVariable("plotId") Integer plotId) throws Exception {
@@ -117,6 +115,42 @@ public class PlotController {
         response.addObject("plot", plotToDetail);
         return response;
     }
+
+    @GetMapping("/plots/detail/addPlantSubmit")
+    public ModelAndView addPlantSubmit(@RequestParam("plotId") Integer plotId, @RequestParam("varietyId") Integer varietyId, @RequestParam("plantsQty") Integer plantsQty) throws Exception{
+        ModelAndView response = new ModelAndView();
+        //new plant with varietyId and appropriate attributes
+        //add a new plot_plant with plant and variety
+        //subtract input quantity from this plot's available slots.
+        Variety variety = varietyRepository.findById(varietyId);
+        Plot plot = plotRepository.findById(plotId);
+        for (int i = 0; i < plantsQty; i++){
+            PlotsPlants newPlotsPlants = new PlotsPlants();
+            Plant newPlant = new Plant();
+            newPlant.setVarietyId(varietyId);
+            newPlant.setVarietyName(variety.getVarietyName());
+            newPlant.setImageUrl(variety.getImageUrl());
+            newPlant.setImageUrl(variety.getCategory());
+            newPlotsPlants.setPlant(newPlant);
+            newPlotsPlants.setPlot(plot);
+            plantRepository.save(newPlant);
+            plotsPlantsRepository.save(newPlotsPlants);
+            log.info("New plant: " + newPlant);
+            log.info("New plotsPlants object: " + newPlotsPlants);
+        }
+        plot.setSpacesTaken(plot.getSpacesTaken() + plantsQty);
+        plot.setSpacesTotal(plot.getSpacesTotal() - plantsQty);
+        plotRepository.save(plot);
+        //remember don't worry about adding to page
+        // that data is automatically pulled upon loading plots/detail/{plotId}
+        response.setViewName("redirect:/plots/detail/"+plotId);
+        return response;
+    }
+
+    //TODO: AFTER hitting the grading checklist:
+    //  use some inverse logic from addPlantSubmit to delete a singular plot_plant and plant object.
+    //  This could be tricky considering the join relationships I set up.
+
     @GetMapping("/plots/editPlot/{plotId}")
     public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -155,14 +189,18 @@ public class PlotController {
         }
         Plot plotToEdit = plotRepository.findById(form.getId());
         Integer newSpaces = form.getSpacesTotal();
+        Integer newId = form.getUserId();
+        User newUser = userRepository.findById(newId);
+        String newFullName = (newUser.getFirstName()+" "+newUser.getLastName());
         //TODO: adjust user first/last name upon edit.
-        plotToEdit.setUserId(form.getUserId());
+        plotToEdit.setUserId(newId);
+        plotToEdit.setUserFullname(newFullName);
         plotToEdit.setSoilMakeup(form.getSoilMakeup());
         plotToEdit.setCultivationStyle(form.getCultivationStyle());
         if (newSpaces >= plotToEdit.getSpacesTaken()){
           plotToEdit.setSpacesTotal(newSpaces);
         } else {
-            log.info("New spaces total must be.");
+            log.info("New spaces total must be greater than spaces taken.");
         }
         plotRepository.save(plotToEdit);
         response.setViewName("redirect:/plots/allPlots");

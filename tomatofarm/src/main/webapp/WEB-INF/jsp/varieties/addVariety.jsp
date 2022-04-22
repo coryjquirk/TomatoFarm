@@ -3,7 +3,6 @@
 <jsp:include page="../include/header.jsp"/>
 <div class="mainContent">
     <h1>Add Variety</h1>
-
     <form action="/variety/varietySubmit" method="GET">
         <input type="hidden" name="id" value="${form.id}">
         <label for="varietyName">Variety name:*</label>

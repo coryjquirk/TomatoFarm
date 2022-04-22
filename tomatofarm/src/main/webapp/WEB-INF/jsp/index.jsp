@@ -41,6 +41,8 @@
                 </h3>
             </div>
         </a>
+        <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg"
+             id="landingPhoto" alt="tray of orange grape tomatoes">
     </sec:authorize>
     <sec:authorize access="!isAuthenticated()">
         <a href="/login/login">
@@ -57,10 +59,9 @@
                 </h3>
             </div>
         </a>
+        <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1650584671/frontendSBA/dester_tomatoes_bxyh90.jpg"
+             id="landingPhoto" alt="tray of Dester tomatoes">
     </sec:authorize>
-
-    <img src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg"
-         id="orangeGrape" alt="tray of orange grape tomatoes">
 </div>
 
 

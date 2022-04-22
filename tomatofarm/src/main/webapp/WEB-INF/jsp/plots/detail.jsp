@@ -35,38 +35,39 @@
         </tbody>
     </table>
     <hr>
-    <form id = "addPlantForm">
-<%--        TODO: define controller logic for this form to add plant to plot.--%>
+    <form action="/plots/detail/addPlantSubmit" method="GET" id="addPlantForm">
+        <%--        TODO: define controller logic for this form to add plant to plot.--%>
         <h4>Add plant to plot</h4>
-        <label for="varietyName">Choose variety:</label>
-        <select class="form-select" name="varietyName" id="varietyName">
+            <input type="hidden" name="plotId" value="${plot.id}">
+            <label for="varietyName">Choose variety:</label>
+        <select class="form-select" name="varietyId" id="varietyName">
             <c:forEach items="${allVarieties}" var="variety">
-                <option value="${variety.id}">${variety.varietyName}</option>
+                <option name="varietyId" value="${variety.id}">${variety.varietyName}</option>
             </c:forEach>
         </select>
-        <label for="plantsTotal">Quantity:</label>
-        <input type="number" name="plantsTotal" id="plantsTotal" min="1" max="1000" placeholder="0"
+        <label for="plantsQty">Quantity:</label>
+        <input type="number" name="plantsQty" id="plantsQty" min="1" max="1000" placeholder="0"
                value="${form.plantsTotal}">
-        <button class="btn btn-secondary">Add</button>
+        <button class="btn btn-secondary" type="submit">Add</button>
     </form>
     <hr>
-    <%--    TODO: add logic so that only assigned user can edit plants.--%>
     <h3>Plants in this plot</h3>
-<c:if test="${empty plants}">
-    <p>Use form above to add a plant.</p>
-</c:if>
-<c:forEach items="${plants}" var="plant">
+    <c:if test="${empty plants}">
+        <p>Use form above to add a plant.</p>
+    </c:if>
+    <c:forEach items="${plants}" var="plant">
         <div class="plantCard">
             <div class="imgCol">
                 <img src="${plant.imageUrl}">
             </div>
             <div class="infoCol">
                 <p>${plant.varietyName}</p>
-                <p>${plant.category}<span id="plantIdInCard">ID: ${plant.id} </span></p>
+                <p><strong>${plant.category}</strong><span id="plantIdInCard">ID: ${plant.id} </span></p>
             </div>
-            <form>
-                <button class="btn btn-secondary"  id="deleteBtn" >Delete</button>
-            </form>
+<%--            TODO: AFTER reqs checklist: Delete plant function.--%>
+<%--            <form>--%>
+<%--                <button class="btn btn-secondary" id="deleteBtn">Delete</button>--%>
+<%--            </form>--%>
         </div>
     </c:forEach>
     <hr>
