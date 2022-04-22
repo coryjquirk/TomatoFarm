@@ -14,7 +14,7 @@
             <th scope="col">Assigned to</th>
             <th scope="col">Filled</th>
             <th scope="col">Available</th>
-            <th scope="col">Slots Total</th>
+            <th scope="col">Spaces Total</th>
             <th scope="col">Details</th>
         </tr>
         </thead>
@@ -25,9 +25,9 @@
                 <td>${plot.soilMakeup}</td>
                 <td>${plot.cultivationStyle}</td>
                 <td>${plot.userFullname}</td>
-                <td>${plot.spacesTaken}</td>
-                <td>${plot.spacesTotal - plot.spacesTaken}</td>
-                <td>${plot.spacesTotal}</td>
+                <td id="spacesTaken">${plot.spacesTaken}</td>
+                <td id="spacesAvailable"></td>
+                <td id="spacesTotal">${plot.spacesTotal}</td>
                 <td><a href="/plots/detail/${plot.id}"><button class="btn btn-primary">View</button></a></td>
             </tr>
         </c:forEach>

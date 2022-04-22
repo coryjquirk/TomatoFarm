@@ -19,7 +19,8 @@
 
 <body>
 
-<div id="navBar"><a href="/index">Home</a> / <a href="/plots/allPlots">Plots</a> / <a href="/varieties/grid">Varieties</a> / <a href="/admin/directory">People</a> / <a href="/user/search">Search</a>
+<div id="navBar"><a href="/index">Home</a> / <a href="/plots/allPlots">Plots</a> / <a href="/varieties/grid">Varieties</a> / <a href="/admin/directory">People</a>
+<%--    / <a href="/user/search">Search</a> I'll reinstate this when search is built out.--%>
     <a href="/index"><h2 id="siteHeader">Tomato Farm &#127813;</h2></a></div>
 
 <div id="authBar"><sec:authorize access="!isAuthenticated()">

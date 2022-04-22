@@ -191,7 +191,7 @@ td {
   position: relative;
   color: black;
   background-image: url("45-degree-fabric-light.png");
-    box-shadow: #000000c0 3px -3px 0px 0px, #00000059 6px -6px 0px 0px, #00000023 9px -9px 0px 0px;
+  box-shadow: #000000c0 3px -3px 0px 0px, #00000059 6px -6px 0px 0px, #00000023 9px -9px 0px 0px;
 }
 .homeLauncher h3 {
   font-size: medium;
@@ -258,6 +258,7 @@ td {
   height: 150px;
   width: 150px;
 }
+/*snackbar will be used to notify "sign in successful", "plot add successful", etc*/
 #snackbar {
   visibility: hidden;
   min-width: 250px;
