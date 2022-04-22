@@ -13,6 +13,5 @@ import java.util.List;
 public interface UserRoleDAO extends JpaRepository<UserRole, Long> {
     List<UserRole> findByUserId(@Param("userId") Integer userId);
 
-    void deleteById(Integer userId);
     void deleteByUserRoleAndUserId(String userRole, Integer userId);
 }

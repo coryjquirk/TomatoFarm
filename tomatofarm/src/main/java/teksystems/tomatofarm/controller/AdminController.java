@@ -2,7 +2,6 @@ package teksystems.tomatofarm.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -20,7 +19,6 @@ import teksystems.tomatofarm.formbean.EditUserFormBean;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -33,15 +31,6 @@ public class AdminController {
     private UserRoleDAO userRoleRepository;
     @Autowired
     private PlotDAO plotRepository;
-
-    @RequestMapping(value = "admin/userAdmin", method = RequestMethod.GET)
-    public ModelAndView userAdmin() throws Exception {
-        ModelAndView response = new ModelAndView();
-
-        response.setViewName("/admin/userAdmin");
-
-        return response;
-    }
 
     @RequestMapping(value = "/admin/directory", method = RequestMethod.GET)
     public ModelAndView directory() throws Exception {
@@ -103,6 +92,9 @@ public class AdminController {
     }
 
     //TODO: protect this method with authorization so only ADMIN can access this.
+    //  @PreAuthorize("hasAuthority('ADMIN')")
+    //  instate the above line.
+
     @Transactional
     @RequestMapping(value = "/admin/userSubmit", method = { RequestMethod.POST, RequestMethod.GET})
     public ModelAndView editUserSubmit(@Valid EditUserFormBean form, BindingResult bindingResult) throws Exception {

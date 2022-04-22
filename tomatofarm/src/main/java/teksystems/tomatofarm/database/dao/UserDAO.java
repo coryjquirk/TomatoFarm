@@ -15,9 +15,9 @@ import java.util.Map;
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
 
-    public User findById(@Param("id") Integer id);
+    User findById(@Param("id") Integer id);
 
-    public List<User> findAll();
+    List<User> findAll();
 
     public List<User> findByFirstNameIgnoreCaseContaining(@Param("firstName") String firstName);
 
@@ -25,5 +25,5 @@ public interface UserDAO extends JpaRepository<User, Long> {
     List<String> findDistinctUserFirstLastName();
 
     @Query(value = "select * from users where email = :email", nativeQuery = true)
-    public User findByEmail(@Param("email") String email);
+    User findByEmail(@Param("email") String email);
 }

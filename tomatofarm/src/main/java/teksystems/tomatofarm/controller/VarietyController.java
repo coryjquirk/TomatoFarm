@@ -64,6 +64,7 @@ public class VarietyController {
     @RequestMapping(value = "/variety/varietySubmit", method = {RequestMethod.POST,RequestMethod.GET})
     public ModelAndView submitVariety(@Valid VarietyFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
+        String newVarietyName = form.getVarietyName();
         if (bindingResult.hasErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
                 log.debug(error.toString());
@@ -75,10 +76,12 @@ public class VarietyController {
             //redirects to addVariety page with relevant error messages
             response.setViewName("varieties/addVariety");
             return response;
+        } else if (varietyRepository.findByVarietyName(newVarietyName)!=null) {
+            log.info(newVarietyName + " already exists in the database.");
         } else {
             Variety newVariety = new Variety();
             String newVarietyUrl = form.getImageUrl();
-            newVariety.setVarietyName(form.getVarietyName());
+            newVariety.setVarietyName(newVarietyName);
             newVariety.setColor(form.getColor());
             newVariety.setCategory(form.getCategory());
             if (newVarietyUrl!=null){
