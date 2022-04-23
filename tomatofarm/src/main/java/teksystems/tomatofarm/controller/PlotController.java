@@ -141,10 +141,7 @@ public class PlotController {
             log.info("New plotsPlants object: " + newPlotsPlants);
         }
         plot.setSpacesTaken(plot.getSpacesTaken() + plantsQty);
-        plot.setSpacesTotal(plot.getSpacesTotal() - plantsQty);
         plotRepository.save(plot);
-        //remember don't worry about adding to page
-        // that data is automatically pulled upon loading plots/detail/{plotId}
         response.setViewName("redirect:/plots/detail/"+plotId);
         return response;
     }

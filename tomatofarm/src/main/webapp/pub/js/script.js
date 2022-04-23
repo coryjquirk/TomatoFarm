@@ -1,4 +1,4 @@
-console.log("Hello from JavaScript")
+console.log("Hello from Tomato Farm's JavaScript")
 const plotTable = document.getElementById("plotTable");
 const rowCt = plotTable.rows.length;
 function availableSpaces() {
@@ -14,3 +14,12 @@ function availableSpaces() {
     }
 }
 availableSpaces();
+
+function showPassword() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}

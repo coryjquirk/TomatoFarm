@@ -9,7 +9,9 @@
     <input type="text" name="username" id="username" placeholder="email">
 <%--            TODO: mask password characters in input box.--%>
     <label for="password">Password:</label>
+
     <input type="password" name="password" id="password" placeholder="password">
+    <input type="checkbox" onclick="showPassword()">Show Password
 
 <%--    Spring security has its own controller behind the scenes that we submit to.--%>
     <button type="submit" class="btn btn-primary">Submit</button>

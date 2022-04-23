@@ -6,7 +6,7 @@
 
 <div class="mainContent">
     <h2>User's plots:</h2>
-    <table class="table" id="plotTable">
+    <table class="table" id="userPlotTable">
         <thead>
         <tr>
             <th scope="col">#</th>
