@@ -15,6 +15,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <link href="<c:url value="../../../pub/css/styles.css"/>" rel="stylesheet" type="text/css"/>
+<%--    TODO: favicon--%>
 </head>
 
 <body>
