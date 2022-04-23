@@ -2,7 +2,7 @@
 Full stack Java bootcamp capstone project
 
 ## Use case
-Managing farm plots of varying cultivation styles and their tomato plants of various varities (heirloom, cherry, slicer, etc).  
+Managing farm plots of varying cultivation styles and their tomato plants of various varieties (heirloom, cherry, slicer, etc).  
 
 <img style="width:350px;" src="https://res.cloudinary.com/dgwzirogr/image/upload/v1650613475/frontendSBA/appscreenshot_kotu04.png" alt="app screenshot">
 
