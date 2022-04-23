@@ -11,7 +11,6 @@ function availableSpaces() {
         if(spacesTotalCellVal - spacesTakenCellVal <= 0){
             plotTable.rows[i].cells[5].style="background-color:#FF8055;"
         }
-        console.log("plotTable.rows["+i+"]: " + plotTable.rows[i].cells[4].innerHTML)
     }
 }
 availableSpaces();
