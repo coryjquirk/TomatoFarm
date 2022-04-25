@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`varieties` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `variety_name` (`variety_name` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 81
+AUTO_INCREMENT = 92
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`plants` (
     FOREIGN KEY (`variety_id`)
     REFERENCES `tomatodb`.`varieties` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 196
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -63,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`users` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 35
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`plots` (
     FOREIGN KEY (`user_id`)
     REFERENCES `tomatodb`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 22
+AUTO_INCREMENT = 32
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -107,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`plots_plants` (
     FOREIGN KEY (`plot_id`)
     REFERENCES `tomatodb`.`plots` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 196
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -125,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tomatodb`.`user_roles` (
     FOREIGN KEY (`user_id`)
     REFERENCES `tomatodb`.`users` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 57
+AUTO_INCREMENT = 74
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
