@@ -21,6 +21,15 @@ body {
 #siteHeader{
   float: right;
 }
+#homeIcon{
+  margin: 0px 15px 0px 0px;
+}
+#searchIcon{
+  margin: 0px 0px 0px 10px;
+}
+#tomatoIcon{
+  margin: 0px 0px 0px 10px;
+}
 body a {
   color: rgb(71, 71, 71);
   text-decoration: none;
@@ -31,7 +40,7 @@ body a {
   -o-animation: fadeIn 1s;
   -ms-animation: fadeIn 1s;
 }
-body a:hover{
+body a:hover, #homeIcon{
   color: white;
   opacity: 1;
 }
@@ -83,6 +92,12 @@ body a:hover{
   border: 1px solid black;
   border-radius: 5px;
   background-color: rgb(255, 163, 128, .85);
+  position: relative;
+}
+.backArrow{
+  position: absolute;
+  left: -65px;
+  top: -65px;
 }
 #registrationForm {
   padding: 30px;
@@ -113,7 +128,10 @@ td {
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.7);
 }
-
+.userLink{
+  background-color: #bbbbbb;
+  padding: 5px;
+}
 /*TODO: add hover effects to table rows*/
 /*TODO: add fades to page changes*/
 .btn-primary {
@@ -174,6 +192,14 @@ td {
 #hiddenCPasswordError {
   display: none;
 }
+#showPasswordLabel{
+  font-style: italic;
+  padding-left: 5px;
+  color: grey;
+}
+#showPasswordCheckbox{
+  display: inline;
+}
 #landingPhoto, #rosemaryBush{
   width: 280px;
   height: 40%;
@@ -222,16 +248,17 @@ td {
   opacity: 1;
   right: 0;
 }
-.footer,
-.footer a {
+.footer{
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 30px;
   background-color: rgb(61, 61, 61);
-  color: rgb(175, 175, 175);
   text-align: center;
+}
+.footer a{
+  color: rgb(175, 175, 175);
   font-family: "Roboto";
 }
 .footer p {

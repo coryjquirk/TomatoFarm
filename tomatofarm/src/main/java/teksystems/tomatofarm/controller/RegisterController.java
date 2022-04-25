@@ -38,10 +38,8 @@ public class RegisterController {
     public ModelAndView create() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("register/registerForm");
-
         RegisterFormBean form = new RegisterFormBean();
         response.addObject("form", form);
-
         return response;
     }
 
@@ -74,7 +72,6 @@ public class RegisterController {
         newUserRole.setUserId(newUserId);
         userRoleRepository.save(newUserRole);
         response.setViewName("redirect:/login/login");
-
         try {
             boolean deletesuccess = (new File("registerlog.txt")).delete();
             if (deletesuccess){

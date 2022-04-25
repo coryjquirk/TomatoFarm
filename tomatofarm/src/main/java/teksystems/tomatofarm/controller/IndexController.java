@@ -17,7 +17,11 @@ public class IndexController {
         response.setViewName("index");
         return response;
     }
-
-
+    @GetMapping(value = "/credits")
+    public ModelAndView credits() throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("credits");
+        return response;
+    }
 }
 

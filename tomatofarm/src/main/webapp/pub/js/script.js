@@ -15,11 +15,25 @@ function availableSpaces() {
 }
 availableSpaces();
 
-function showPassword() {
+function showPasswordLogin() {
     var x = document.getElementById("password");
     if (x.type === "password") {
         x.type = "text";
     } else {
         x.type = "password";
+    }
+}
+function showPasswordRegister() {
+    var y = document.getElementById("passwordId");
+    var z = document.getElementById("confirmPasswordId");
+    if (y.type === "password") {
+        y.type = "text";
+    } else {
+        y.type = "password";
+    }
+    if (z.type === "password") {
+        z.type = "text";
+    } else {
+        z.type = "password";
     }
 }

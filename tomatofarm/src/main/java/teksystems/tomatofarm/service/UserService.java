@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class UserService {
-
     public boolean changePasswordValidator(String password, String confirmPassword){
         if (password.equals(confirmPassword)) {
             log.info("New passwords match.");

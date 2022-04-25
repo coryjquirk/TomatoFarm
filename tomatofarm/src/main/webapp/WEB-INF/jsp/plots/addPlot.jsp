@@ -17,7 +17,6 @@
             </div>
             <div style="display:inline-block; margin-bottom: 10px;">
                 <p>Soil makeup:</p>
-
                 <c:forEach var="allSoils" items="${allSoils}">
                     <div style="float:left; margin: 3px; padding:0 5px 0 10px; border: 1px solid grey; background-color: #ece4d3; border-radius: 3px;">
                         <input type="radio" name="soilMakeup" id="soilMakeupRadio" value="${allSoils}"/>

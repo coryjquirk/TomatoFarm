@@ -21,13 +21,11 @@ import teksystems.tomatofarm.formbean.RegisterFormBean;
 import teksystems.tomatofarm.service.UserService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Controller
 public class UserController {
-
     @Autowired
     private UserDAO userRepository;
     @Autowired
@@ -41,11 +39,8 @@ public class UserController {
     public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/edit");
-
         User user = userRepository.findById(userId);
-
         RegisterFormBean form = new RegisterFormBean();
-
         form.setId(Math.toIntExact(user.getId()));
         form.setEmail(user.getEmail());
         form.setFirstName(user.getFirstName());
@@ -54,36 +49,16 @@ public class UserController {
         form.setConfirmPassword(user.getPassword());
         response.addObject("user", user);
         response.addObject("form", form);
-
-        return response;
-    }
-
-    @GetMapping(value="/user/search")
-    public ModelAndView search(@RequestParam(value = "firstName", required = false) String firstName) {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("user/search");
-
-        List<User> users = new ArrayList<>();
-
-        if (!StringUtils.isEmpty(firstName)) {
-            users = userRepository.findByFirstNameIgnoreCaseContaining(firstName);
-        }
-
-        response.addObject("usersModelKey", users);
-        response.addObject("firstName", firstName);
-
         return response;
     }
     @GetMapping(value="/user/accountEditForm")
     public ModelAndView accountEdit() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("user/accountEditForm");
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByEmail(username);
         List<UserRole> userRoles = userRoleRepository.findByUserId(user.getId());
-
         AccountEditFormBean form = new AccountEditFormBean();
         form.setFirstName(user.getFirstName());
         form.setLastName(user.getLastName());
@@ -92,11 +67,9 @@ public class UserController {
         response.addObject("userRoles", userRoles);
         return response;
     }
-
     @RequestMapping(value = "/user/accountEditSubmit", method = { RequestMethod.POST, RequestMethod.GET})
     public ModelAndView accountEditSubmit(@Valid AccountEditFormBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
-
         log.info(form.toString());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -114,7 +87,6 @@ public class UserController {
         User userToEdit = userRepository.findById(authenticatedUserID);
         String newPassword = form.getNewPassword();
         String confirmNewPassword = form.getConfirmPassword();
-
         String newFirstName = form.getFirstName();
         String newLastName = form.getLastName();
         if (newPassword!=null){

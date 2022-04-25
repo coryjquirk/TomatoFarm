@@ -88,11 +88,6 @@ public class AdminController {
         response.setViewName("redirect:/admin/userEdit/"+userId);
         return response;
     }
-
-    //TODO: protect this method with authorization so only ADMIN can access this.
-    //  @PreAuthorize("hasAuthority('ADMIN')")
-    //  instate the above line.
-
     @PreAuthorize("hasAuthority('ADMIN')")
     @Transactional
     @RequestMapping(value = "/admin/userSubmit", method = { RequestMethod.POST, RequestMethod.GET})

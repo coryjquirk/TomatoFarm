@@ -5,6 +5,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
+    <a class="backArrow" href="/plots/detail/${form.id}"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
     <sec:authorize access="hasAuthority('ADMIN')">
         <h2>Edit plot</h2>
         <p>Plot #${form.id}</p>

@@ -2,15 +2,14 @@
 
 <jsp:include page="../include/header.jsp"/>
 <div class="mainContent">
+    <a class="backArrow" href="/varieties/grid"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
     <h1>Add Variety</h1>
     <form action="/variety/varietySubmit" method="POST">
         <input type="hidden" name="id" value="${form.id}">
         <label for="varietyName">Variety name:*</label>
         <input type="text" name="varietyName" id="varietyName" value="${form.varietyName}" placeholder="variety name">
-
         <label for="color">Color:</label>
         <input type="text" name="color" id="color" value="${form.color}" placeholder="color">
-
         <label for="category">Category:*</label>
         <select class="form-select" name="category" id="category">
             <c:forEach var="categories" items="${categories}">
@@ -27,5 +26,7 @@
             <div style="color:red;">${error.getDefaultMessage()}</div>
         </c:forEach>
     </c:if>
+    <hr>
+    <a href="/varieties/grid"><button class="btn btn-primary">Back to all varieties</button></a>
 </div>
 <jsp:include page="../include/footer.jsp"/>
