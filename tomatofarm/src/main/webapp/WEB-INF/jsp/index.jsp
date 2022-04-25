@@ -27,13 +27,7 @@
                 </h3>
             </div>
         </a>
-<%--        <a href="/user/search">--%>
-<%--            <div class="homeLauncher">--%>
-<%--                <h3>--%>
-<%--                    <span>Search (Users/plots)</span>--%>
-<%--                </h3>--%>
-<%--            </div>--%>
-<%--        </a>--%>
+
         <a href="/login/logout">
             <div class="homeLauncher">
                 <h3>

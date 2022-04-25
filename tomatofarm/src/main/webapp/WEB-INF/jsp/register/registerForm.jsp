@@ -35,10 +35,11 @@
             <label for="confirmPasswordId">Confirm password:</label>
             <input type="password"
                    name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}" placeholder="confirm password">
+            <p id="showPasswordLabel"><input type="checkbox" onclick="showPasswordRegister()" id="showPasswordCheckbox">Show Passwords</p>
             <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-            <p>* all fields required</p>
+            <p><strong>* all fields required</strong></p>
             <button class="btn btn-primary" type="submit">Submit</button>
             <p>You'll be redirected to the login page upon successful registration.</p>
         </form>

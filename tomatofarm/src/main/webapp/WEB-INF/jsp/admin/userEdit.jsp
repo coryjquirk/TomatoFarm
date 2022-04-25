@@ -38,7 +38,6 @@
         <button class="btn btn-primary">Back</button>
     </a>
     <hr>
-
     <h3>Reassign a plot to this user</h3>
     <form action="/admin/assignPlot" method="get">
         <input type="hidden" name="userId" value="${user.id}">
@@ -50,19 +49,17 @@
         </select>
         <button type="submit" class="btn btn-success">Assign to user</button>
     </form>
-    <hr>
     <sec:authorize access="hasAuthority('ADMIN')">
+        <hr>
         <h3>Edit user: (admin only)</h3>
         <p>${user.firstName} ${user.lastName}</p>
         <form action="/admin/userSubmit" method="GET">
             <input type="hidden" name="id" value="${form.id}">
-
             <label for="firstNameId">First name:</label>
             <input type="text" name="firstName" id="firstNameId" value="${form.firstName}">
             <c:forEach items='${bindingResult.getFieldErrors("firstName")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
-
             <label for="lastNameId">Last name:</label>
             <input type="text" name="lastName" id="lastNameId" value="${form.lastName}">
             <c:forEach items='${bindingResult.getFieldErrors("lastName")}' var="error">

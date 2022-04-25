@@ -1,11 +1,13 @@
 package teksystems.tomatofarm.database.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -27,33 +29,41 @@ public class TestUserDAO {
     @Order(1)
     @Rollback(value = false)
     public void saveUserTest() {
-        User user = User.builder().firstName("Joe").lastName("Mauer").email("jmauer@twins.com").password("password").build();
-        userRepository.save(user);
-
-        Assertions.assertThat(user.getId()).isGreaterThan(0);
+        User user1 = User.builder().firstName("Joe").lastName("Mauer").email("jmauer@twins.com").password("password").build();
+        User user2 = User.builder().firstName("Justin").lastName("Morneau").email("jmorneau@twins.com").password("password").build();
+        userRepository.save(user1);
+        userRepository.save(user2);
+        Assertions.assertTrue(user1.getId() > 0);
     }
-    @Test
+    @ParameterizedTest
     @Order(2)
-    public void getUserTest() {
-        User user = userRepository.findById(1);
-        Assertions.assertThat(user.getId()).isEqualTo(1);
+    @ValueSource(strings = {"jmauer@twins.com", "jmorneau@twins.com"})
+    public void findUserTest(String email){
+        User user = userRepository.findByEmail(email);
+        Assertions.assertNotNull(user);
     }
     @Test
     @Order(3)
-    public void getUserListTest() {
-        List<User> userList = userRepository.findAll();
-        Assertions.assertThat(userList.size()).isGreaterThan(0);
+    public void getUserTest() {
+        User user = userRepository.findById(1);
+        Assertions.assertEquals(1, user.getId());
     }
     @Test
     @Order(4)
+    public void getUserListTest() {
+        List<User> userList = userRepository.findAll();
+        Assertions.assertTrue(userList.size() > 0);
+    }
+    @Test
+    @Order(5)
     @Rollback(value = false)
     public void updateUserTest() {
         User user = userRepository.findById(1);
         user.setFirstName("Joseph");
-        Assertions.assertThat(userRepository.findById(1).getFirstName()).isEqualTo(user.getFirstName());
+        Assertions.assertEquals(userRepository.findById(1).getFirstName(), user.getFirstName());
     }
     @Test
-    @Order(5)
+    @Order(6)
     @Rollback(value = false)
     public void deleteUserTest(){
         User user = userRepository.findById(1);
@@ -63,6 +73,6 @@ public class TestUserDAO {
         if(optionalUser.isPresent()){
             temporaryUser = userRepository.findById(user.getId());
         }
-        Assertions.assertThat(temporaryUser).isNull();
+        Assertions.assertNull(temporaryUser);
     }
 }

@@ -15,6 +15,10 @@ public interface VarietyDAO extends JpaRepository<Variety, Long> {
 
     Variety findById(Integer id);
 
+    List<Variety> findAllByVarietyNameContaining(@Param("varietyName") String varietyName);
+
+    List<Variety> findAllByCategory(String category);
+
     @Query(value = "SELECT v.variety_name FROM varieties v WHERE v.variety_name = :variety_name", nativeQuery = true)
     String findByVarietyName(@Param("variety_name") String varietyName);
 }

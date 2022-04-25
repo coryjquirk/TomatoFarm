@@ -25,6 +25,7 @@
             <td>${plot.soilMakeup}</td>
             <td>${plot.cultivationStyle}</td>
             <td>${plot.userFullname}</td>
+        <%--TODO: link from plot detail to assigned user--%>
             <td>${plot.spacesTaken}</td>
             <td>${plot.spacesTotal - plot.spacesTaken}</td>
             <td>${plot.spacesTotal}</td>

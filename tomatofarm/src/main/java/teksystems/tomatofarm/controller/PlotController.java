@@ -94,8 +94,6 @@ public class PlotController {
         response.setViewName("redirect:/plots/allPlots");
         return response;
     }
-    // TODO: define logic for add plant to plot with form on plots/detail/{plotId}
-
     @GetMapping("/plots/detail/{plotId}")
     public ModelAndView plotDetail(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -117,15 +115,13 @@ public class PlotController {
         response.addObject("plot", plotToDetail);
         return response;
     }
-
     @GetMapping("/plots/detail/addPlantSubmit")
     public ModelAndView addPlantSubmit(@RequestParam("plotId") Integer plotId, @RequestParam("varietyId") Integer varietyId, @RequestParam("plantsQty") Integer plantsQty) throws Exception{
         ModelAndView response = new ModelAndView();
-        //new plant with varietyId and appropriate attributes
-        //add a new plot_plant with plant and variety
-        //subtract input quantity from this plot's available slots.
         Variety variety = varietyRepository.findById(varietyId);
         Plot plot = plotRepository.findById(plotId);
+        Integer spacesTaken = plot.getSpacesTaken();
+        //TODO: add BindingResult that restricts user from adding more plants than there are spaces available.
         for (int i = 0; i < plantsQty; i++){
             PlotsPlants newPlotsPlants = new PlotsPlants();
             Plant newPlant = new Plant();
@@ -140,34 +136,29 @@ public class PlotController {
             log.info("New plant: " + newPlant);
             log.info("New plotsPlants object: " + newPlotsPlants);
         }
-        plot.setSpacesTaken(plot.getSpacesTaken() + plantsQty);
+        plot.setSpacesTaken(spacesTaken + plantsQty);
         plotRepository.save(plot);
         response.setViewName("redirect:/plots/detail/"+plotId);
         return response;
     }
 
-    //TODO: AFTER hitting the grading checklist:
-    //  use some inverse logic from addPlantSubmit to delete a singular plot_plant and plant object.
-    //  This could be tricky considering the join relationships I set up.
+    //TODO: Delete plant. need to delete plot_plant and plant object simultaneously.
 
     @GetMapping("/plots/editPlot/{plotId}")
     public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("plots/editPlot");
-
         Plot plotToEdit = plotRepository.findById(plotId);
         PlotEditFormBean form = new PlotEditFormBean();
         List<User> allUsers = userRepository.findAll();
         List<String> allSoils = plotRepository.findDistinctSoil();
         List<String> allCultivationStyles = plotRepository.findDistinctCultivationStyle();
-
         form.setId(plotToEdit.getId());
         form.setUserId(plotToEdit.getUserId());
         form.setSoilMakeup(plotToEdit.getSoilMakeup());
         form.setCultivationStyle(plotToEdit.getCultivationStyle());
         form.setSpacesTotal(plotToEdit.getSpacesTotal());
         form.setSpacesTaken(plotToEdit.getSpacesTaken());
-
         response.addObject("form", form);
         response.addObject("allSoils", allSoils);
         response.addObject("allUsers", allUsers);
@@ -191,7 +182,6 @@ public class PlotController {
         Integer newId = form.getUserId();
         User newUser = userRepository.findById(newId);
         String newFullName = (newUser.getFirstName()+" "+newUser.getLastName());
-        //TODO: adjust user first/last name upon edit.
         plotToEdit.setUserId(newId);
         plotToEdit.setUserFullname(newFullName);
         plotToEdit.setSoilMakeup(form.getSoilMakeup());

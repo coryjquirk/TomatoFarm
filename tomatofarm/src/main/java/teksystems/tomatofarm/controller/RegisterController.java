@@ -74,7 +74,6 @@ public class RegisterController {
         newUserRole.setUserId(newUserId);
         userRoleRepository.save(newUserRole);
         response.setViewName("redirect:/login/login");
-
         try {
             boolean deletesuccess = (new File("registerlog.txt")).delete();
             if (deletesuccess){
