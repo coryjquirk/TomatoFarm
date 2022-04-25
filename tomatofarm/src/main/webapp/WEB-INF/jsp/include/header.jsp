@@ -24,9 +24,9 @@
 
 <body>
 
-<div id="navBar"><a href="/index">Home</a> / <a href="/plots/allPlots">Plots</a> / <a href="/varieties/grid">Varieties</a> / <a href="/admin/directory">People</a>
-/ <a href="/search/searchIndex">Search</a>
-    <a href="/index"><h2 id="siteHeader">Tomato Farm &#127813;</h2></a></div>
+<div id="navBar"><a href="/index"><img src="../../../pub/css/home.png" id="homeIcon"></a><a href="/plots/allPlots">Plots</a> / <a href="/varieties/grid">Varieties</a> / <a href="/admin/directory">People</a>
+<a href="/search/searchIndex"><i id="searchIcon" class="fas fa-search"></i></a>
+    <a href="/index"><h2 id="siteHeader">Tomato Farm <img id="tomatoIcon" src="../../../pub/css/tomato.png"></h2></a></div>
 
 <div id="authBar"><sec:authorize access="!isAuthenticated()">
     <a href="/login/login">Login</a>&#8226;<a href="/register/registerForm">Register</a>

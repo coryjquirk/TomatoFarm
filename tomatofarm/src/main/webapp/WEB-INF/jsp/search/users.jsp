@@ -6,17 +6,17 @@
     <h2>Search users</h2>
     <form action="/search/users" method="GET">
         <label for="firstName">First name:</label>
-        <input type="text" name="firstName" id="firstName" value="${firstName}">
+        <input type="text" name="firstName" id="firstName" value="${firstName}" placeholder="first name">
         <button class="btn btn-primary" type="submit">Go</button>
     </form>
     <form action="/search/users" method="GET">
         <label for="lastName">Last name:</label>
-        <input type="text" name="lastName" id="lastName" value="${lastName}">
+        <input type="text" name="lastName" id="lastName" value="${lastName}" placeholder="last name">
         <button class="btn btn-primary" type="submit">Go</button>
     </form>
     <form action="/search/users" method="GET">
-        <label for="emailAddress">Last name:</label>
-        <input type="text" name="emailAddress" id="emailAddress" value="${emailAddress}">
+        <label for="emailAddress">Email address:</label>
+        <input type="text" name="emailAddress" id="emailAddress" value="${emailAddress}" placeholder="email address">
         <button class="btn btn-primary" type="submit">Go</button>
     </form>
     <c:if test="${not empty firstName || not empty lastName || not empty emailAddress}">

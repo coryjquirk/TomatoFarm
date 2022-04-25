@@ -6,7 +6,7 @@
 <div class="mainContent">
     <sec:authorize access="!isAuthenticated()">
         <h1>Sign Up</h1>
-        <form action="/register/registerSubmit" method="get">
+        <form action="/register/registerSubmit" method="GET">
             <input type="hidden" name="id" value="${form.id}">
 
             <label for="emailId">Email</label>

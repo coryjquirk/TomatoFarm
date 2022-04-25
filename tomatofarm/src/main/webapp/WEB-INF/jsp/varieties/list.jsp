@@ -6,6 +6,7 @@
     <a href="addVariety">
         <button class="btn btn-primary">Add new variety</button>
     </a>
+    <%--    TODO: switch this to nice grid/table icons!--%>
     <a href="grid">
         <button class="btn btn-secondary">Grid view</button>
     </a>

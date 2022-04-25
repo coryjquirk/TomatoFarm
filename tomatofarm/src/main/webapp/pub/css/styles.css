@@ -21,6 +21,15 @@ body {
 #siteHeader{
   float: right;
 }
+#homeIcon{
+  margin: 0px 15px 0px 0px;
+}
+#searchIcon{
+  margin: 0px 0px 0px 10px;
+}
+#tomatoIcon{
+  margin: 0px 0px 0px 10px;
+}
 body a {
   color: rgb(71, 71, 71);
   text-decoration: none;
@@ -31,7 +40,7 @@ body a {
   -o-animation: fadeIn 1s;
   -ms-animation: fadeIn 1s;
 }
-body a:hover{
+body a:hover, #homeIcon{
   color: white;
   opacity: 1;
 }
@@ -239,16 +248,17 @@ td {
   opacity: 1;
   right: 0;
 }
-.footer,
-.footer a {
+.footer{
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 30px;
   background-color: rgb(61, 61, 61);
-  color: rgb(175, 175, 175);
   text-align: center;
+}
+.footer a{
+  color: rgb(175, 175, 175);
   font-family: "Roboto";
 }
 .footer p {

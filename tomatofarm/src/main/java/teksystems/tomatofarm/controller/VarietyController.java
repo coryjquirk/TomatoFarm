@@ -65,7 +65,6 @@ public class VarietyController {
         response.setViewName("varieties/addVariety");
         return response;
     }
-
     @PostMapping(value = "/variety/varietySubmit")
     public ModelAndView submitVariety(@Valid VarietyFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();

@@ -5,6 +5,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
+    <a class="backArrow" href="/plots/allPlots"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
     <h2>Plot detail</h2>
     <table class="table">
         <thead>
@@ -25,7 +26,7 @@
             <td>${plot.soilMakeup}</td>
             <td>${plot.cultivationStyle}</td>
             <td>${plot.userFullname}</td>
-        <%--TODO: link from plot detail to assigned user--%>
+            <%--TODO: link from plot detail to assigned user--%>
             <td>${plot.spacesTaken}</td>
             <td>${plot.spacesTotal - plot.spacesTaken}</td>
             <td>${plot.spacesTotal}</td>
@@ -39,8 +40,8 @@
     <form action="/plots/detail/addPlantSubmit" method="GET" id="addPlantForm">
         <%--        TODO: define controller logic for this form to add plant to plot.--%>
         <h4>Add plant to plot</h4>
-            <input type="hidden" name="plotId" value="${plot.id}">
-            <label for="varietyName">Choose variety:</label>
+        <input type="hidden" name="plotId" value="${plot.id}">
+        <label for="varietyName">Choose variety:</label>
         <select class="form-select" name="varietyId" id="varietyName">
             <c:forEach items="${allVarieties}" var="variety">
                 <option name="varietyId" value="${variety.id}">${variety.varietyName}</option>
@@ -65,10 +66,10 @@
                 <p>${plant.varietyName}</p>
                 <p><strong>${plant.category}</strong><span id="plantIdInCard">ID: ${plant.id} </span></p>
             </div>
-<%--            TODO: AFTER reqs checklist: Delete plant function.--%>
-<%--            <form>--%>
-<%--                <button class="btn btn-secondary" id="deleteBtn">Delete</button>--%>
-<%--            </form>--%>
+                <%--            TODO: AFTER reqs checklist: Delete plant function.--%>
+                <%--            <form>--%>
+                <%--                <button class="btn btn-secondary" id="deleteBtn">Delete</button>--%>
+                <%--            </form>--%>
         </div>
     </c:forEach>
     <hr>

@@ -4,6 +4,7 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
+    <h2>Search</h2>
     <a href="/search/users">
         <div class="homeLauncher">
             <h3>
