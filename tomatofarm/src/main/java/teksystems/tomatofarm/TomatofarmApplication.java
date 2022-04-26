@@ -11,18 +11,4 @@ public class TomatofarmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TomatofarmApplication.class, args);
 	}
-//	TODO: DONE:
-//			- Spring Security access levels, sign-in, and registration.
-//			- functionality to add new plots and tomato varieties to DB.
-//			- baseline front end bootstrap design
-//			- add plants to plot with table of plants for each plot (specify variety).
-//			- check rubric requirements for anything missing
-//		TO-DO:
-//			- More JUnit test coverage for custom methods
-//			- link from plot detail to assigned user
-//			- finish search method to find plots, plants, and users.
-//			- comb app for potential errors/vulnerabilities
-//			- bring in an API to bring in additional data
-//			- front end: add more photos, JavaScript tricks
-//    		- personalize with stuff from real life farm/garden experience.
 }

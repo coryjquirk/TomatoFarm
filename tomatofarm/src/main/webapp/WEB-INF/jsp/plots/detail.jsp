@@ -25,8 +25,7 @@
             <th scope="row">${plot.id}</th>
             <td>${plot.soilMakeup}</td>
             <td>${plot.cultivationStyle}</td>
-            <td>${plot.userFullname}</td>
-            <%--TODO: link from plot detail to assigned user--%>
+            <td><a href="/admin/userEdit/${plot.userId}" class="userLink">${plot.userFullname}</a></td>
             <td>${plot.spacesTaken}</td>
             <td>${plot.spacesTotal - plot.spacesTaken}</td>
             <td>${plot.spacesTotal}</td>
@@ -38,7 +37,6 @@
     </table>
     <hr>
     <form action="/plots/detail/addPlantSubmit" method="GET" id="addPlantForm">
-        <%--        TODO: define controller logic for this form to add plant to plot.--%>
         <h4>Add plant to plot</h4>
         <input type="hidden" name="plotId" value="${plot.id}">
         <label for="varietyName">Choose variety:</label>
@@ -67,7 +65,6 @@
                 <p><strong>${plant.category}</strong></p>
                 <p id="plantIdInCard">${plant.id}</p>
             </div>
-                <%--            TODO: AFTER reqs checklist: Delete plant function.--%>
                 <form action="/plots/deletePlant/${plant.id}" method="GET">
                     <input type="hidden" name="plantId" id="plantId" value="${plant.id}">
                     <button class="btn btn-secondary" id="deleteBtn" type="submit">Delete</button>

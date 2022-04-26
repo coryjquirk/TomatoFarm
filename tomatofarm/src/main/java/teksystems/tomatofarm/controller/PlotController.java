@@ -128,7 +128,7 @@ public class PlotController {
             response.setViewName("redirect:/plots/detail/" + plotId);
         } else {
             //TODO: add BindingResult that restricts user from adding more plants than there are spaces available.
-            //This method works, but working on a new version using PlantFormBean.
+            //  This method works, but working on a new version using PlantFormBean.
             for (int i = 0; i < plantsQty; i++) {
                 PlotsPlants newPlotsPlants = new PlotsPlants();
                 Plant newPlant = new Plant();
@@ -149,8 +149,6 @@ public class PlotController {
         }
         return response;
     }
-
-    //TODO: Delete plant. need to delete plot_plant and plant object simultaneously.
     @RequestMapping(value = "/plots/deletePlant/{plantId}", method = RequestMethod.GET)
     public ModelAndView deletePlant(@PathVariable("plantId") Integer plantId) throws Exception{
         ModelAndView response = new ModelAndView();
