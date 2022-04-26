@@ -13,9 +13,9 @@ Managing farm plots of varying cultivation styles and their tomato plants of var
   - Admin ability to grant admin permissions to others
 - Search function
   - Finding people, farm plots, or varieties
+
+<img style="width:300px;" src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg" alt="tray of orange grape tomatoes">
  
-<img style="width:200px;" src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" alt="Spring logo">
-<img style="width:200px;" src="https://junit.org/junit4/images/junit5-banner.png" alt="JUnit logo">  
 
 ## Technologies
 - SQL
@@ -27,7 +27,12 @@ Managing farm plots of varying cultivation styles and their tomato plants of var
 - Bootstrap front end 
 - JUnit testing
 
-<img style="width:300px;" src="https://res.cloudinary.com/dgwzirogr/image/upload/v1649013339/frontendSBA/orangegrape_wegqti.jpg" alt="tray of orange grape tomatoes">
+<img style="width:200px;" src="https://spring.io/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" alt="Spring logo">
+<img style="width:200px;" src="https://junit.org/junit4/images/junit5-banner.png" alt="JUnit logo">  
+<img style="width:200px;" src="https://seeklogo.com/images/B/bootstrap-logo-69A1CCC10B-seeklogo.com.png" alt="Bootstrap logo">  
+<img style="width:200px;" src="https://res.cloudinary.com/cloudinary-marketing/image/upload/v1595456749/creative_source/Logo/PNG/cloudinary_logo_blue_0720_2x.png" alt="Cloudinary logo">  
+<img style="width:200px;" src="https://seeklogo.com/images/F/font-awesome-logo-6E69605A6D-seeklogo.com.png" alt="Fontawesome logo">  
+<img style="width:200px;" src="https://design.freepikcompany.com/media/img/logo/flaticon/logo-green.svg" alt="Flaticon logo">  
 
 ## Future development
 Quality improvement
