@@ -44,24 +44,28 @@ body a:hover, #homeIcon{
   color: white;
   opacity: 1;
 }
-#registerBody,
-#landingBody,
-#plotsBody {
-  height: 800px;
-  background-position: center;
+#registerPage,
+#landingPage,
+#loginPage {
+  height: 700px;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  /*transition: 0.3s;*/
+  /*animation: fadeIn 1s;*/
+  /*-webkit-animation: fadeIn 1s;*/
+  /*-moz-animation: fadeIn 1s;*/
+  /*-o-animation: fadeIn 1s;*/
+  /*-ms-animation: fadeIn 1s;*/
 }
-/*#registerBody {*/
-/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/greenhouse_zzyera.jpg);*/
-/*}*/
-/*#landingBody {*/
-/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/park_krkvut.jpg);*/
-/*}*/
-/*#plotsBody {*/
-/*  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916732/frontendSBA/ricepaddy_yatrow.jpg);*/
-/*}*/
+#landingPage {
+  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/greenhouse_zzyera.jpg);
+}
+#registerPage {
+  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/park_krkvut.jpg);
+}
+#loginPage {
+  background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1650980858/frontendSBA/bnw-greenwood_cooads.png);
+}
 #navBar {
   padding: 15px;
   font-family: "AGaramond-Bold";
@@ -91,8 +95,14 @@ body a:hover, #homeIcon{
   margin: 75px;
   border: 1px solid black;
   border-radius: 5px;
-  background-color: rgb(255, 163, 128, .85);
+  background-color: rgb(255, 163, 128, .90);
   position: relative;
+  transition: 0.3s;
+  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
 }
 .backArrow{
   position: absolute;
@@ -132,8 +142,7 @@ td {
   background-color: #bbbbbb;
   padding: 5px;
 }
-/*TODO: add hover effects to table rows*/
-/*TODO: add fades to page changes*/
+
 .btn-primary {
   background-color: #003bff;
 }
@@ -154,14 +163,20 @@ td {
   border-radius: 5px;
   background-color: #ece4d3;
 }
+#plantIdInCard{
+  color: white;
+  background-color: rgba(108, 117, 125, 0.9);
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  font-weight: bold;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 1px 3px 1px 3px;
+}
 #addPlantForm{
   padding: 10px;
   margin: 0px 0px 5px 0px;
-}
-#plantIdInCard{
-  color: #6c6c6c;
-  position: absolute;
-  right: 15px;
 }
 #deleteBtn{
   display: block;
@@ -280,6 +295,14 @@ td {
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 0.25rem;
+}
+#varietyPage{
+  position: relative;
+}
+#gridListToggle{
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 .varietyPhoto{
   height: 150px;

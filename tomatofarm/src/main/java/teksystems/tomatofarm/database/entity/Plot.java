@@ -1,14 +1,11 @@
 package teksystems.tomatofarm.database.entity;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import teksystems.tomatofarm.database.dao.UserDAO;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
 @Getter
 @Setter
 @ToString
@@ -44,4 +41,12 @@ public class Plot {
     @ToString.Exclude
     @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY)
     private List<PlotsPlants> plotsPlants = new ArrayList<>();
+
+    public Plot(Integer userId, String soilMakeup, String cultivationStyle, Integer spacesTotal, Integer spacesTaken) {
+        this.userId = userId;
+        this.soilMakeup = soilMakeup;
+        this.cultivationStyle = cultivationStyle;
+        this.spacesTotal = spacesTotal;
+        this.spacesTaken = spacesTaken;
+    }
 }

@@ -1,5 +1,6 @@
 package teksystems.tomatofarm.database.entity;
 import lombok.*;
+
 import javax.persistence.*;
 
 @Getter
@@ -22,7 +23,7 @@ public class PlotsPlants {
     private Plot plot;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "plant_id", nullable = false, updatable = true)
     private Plant plant;
 }

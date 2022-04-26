@@ -24,7 +24,7 @@ public class Plant {
     private Integer varietyId;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "plot", fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "plant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PlotsPlants> plotsPlants = new ArrayList();
 
     @Transient

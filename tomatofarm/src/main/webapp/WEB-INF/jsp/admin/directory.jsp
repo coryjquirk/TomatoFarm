@@ -5,6 +5,7 @@
 <jsp:useBean id="allUsers" scope="request" type="java.util.List"/>
 
 <div class="mainContent">
+    <a class="backArrow" href="/index"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
     <h2>All users</h2>
     <p>Click "View user" to see farm plots overseen by user.</p>
     <table class="table">

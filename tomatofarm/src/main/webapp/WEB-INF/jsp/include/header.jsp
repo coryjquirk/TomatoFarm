@@ -7,6 +7,9 @@
 <head>
     <meta charset="utf-8">
     <title>Tomato Farm</title>
+    <link rel="icon"
+          type="image/png"
+          href="../../../pub/css/tomato.png">
 <%--    jQuery--%>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -19,7 +22,6 @@
 <%--    fontawesome--%>
     <script src="https://kit.fontawesome.com/4439e3b362.js" crossorigin="anonymous"></script>
     <link href="<c:url value="../../../pub/css/styles.css"/>" rel="stylesheet" type="text/css"/>
-<%--    TODO: favicon--%>
 </head>
 
 <body>
