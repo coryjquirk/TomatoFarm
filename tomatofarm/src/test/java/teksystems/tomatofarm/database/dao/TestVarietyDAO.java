@@ -27,7 +27,7 @@ public class TestVarietyDAO {
     @Order(1)
     @Rollback(value = false)
     public void saveVarietyTest() {
-        Variety variety = Variety.builder().varietyName("alien flavor").color("purple").category("heirloom").imageUrl("https://photos1.blogger.com/blogger2/5868/4130/1600/tomatopurple.jpg").build();
+        Variety variety = new Variety("alien flavor", "purple", "heirloom", "https://photos1.blogger.com/blogger2/5868/4130/1600/tomatopurple.jpg");
         varietyRepository.save(variety);
         Assertions.assertThat(variety.getId()).isGreaterThan(0);
     }

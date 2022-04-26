@@ -29,9 +29,8 @@ public class TestPlotDAO {
     @Order(1)
     @Rollback(value = false)
     public void savePlot(){
-        Plot plot = Plot.builder().userId(1).soilMakeup("hydroponic").cultivationStyle("indoor hydroponics").spacesTotal(50).spacesTaken(0).build();
+        Plot plot = new Plot(1, "hydroponic", "indoor hydroponics", 50, 0);
         plotRepository.save(plot);
-
         Assertions.assertThat(plot.getId()).isGreaterThan(0);
     }
     @Test

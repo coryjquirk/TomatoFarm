@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Builder
 @Getter
 @Setter
 @ToString
@@ -30,4 +29,11 @@ public class Variety {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    public Variety(String varietyName, String color, String category, String imageUrl) {
+        this.varietyName = varietyName;
+        this.color = color;
+        this.category = category;
+        this.imageUrl = imageUrl;
+    }
 }

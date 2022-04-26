@@ -64,12 +64,14 @@
             </div>
             <div class="infoCol">
                 <p>${plant.varietyName}</p>
-                <p><strong>${plant.category}</strong><span id="plantIdInCard">ID: ${plant.id} </span></p>
+                <p><strong>${plant.category}</strong></p>
+                <p id="plantIdInCard">${plant.id}</p>
             </div>
                 <%--            TODO: AFTER reqs checklist: Delete plant function.--%>
-                <%--            <form>--%>
-                <%--                <button class="btn btn-secondary" id="deleteBtn">Delete</button>--%>
-                <%--            </form>--%>
+                <form action="/plots/deletePlant/${plant.id}" method="GET">
+                    <input type="hidden" name="plantId" id="plantId" value="${plant.id}">
+                    <button class="btn btn-secondary" id="deleteBtn" type="submit">Delete</button>
+                </form>
         </div>
     </c:forEach>
     <hr>

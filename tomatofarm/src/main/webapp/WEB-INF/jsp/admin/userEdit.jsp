@@ -6,7 +6,8 @@
 
 <div class="mainContent">
     <a class="backArrow" href="/admin/directory"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
-    <h2>User's plots:</h2>
+    <h1>${user.firstName} ${user.lastName}</h1>
+    <h3>User's plots:</h3>
     <table class="table" id="userPlotTable">
         <thead>
         <tr>

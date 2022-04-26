@@ -13,4 +13,7 @@ public interface PlotsPlantsDAO extends JpaRepository<PlotsPlants, Long> {
 
     @Query(value = "SELECT * FROM plots_plants p WHERE p.plot_id = :plot_id", nativeQuery = true)
     List<PlotsPlants> findPlotsPlantsByPlotId(@Param("plot_id") Integer plotId);
+
+    @Query(value = "SELECT * FROM plots_plants p WHERE p.plant_id = :plant_id", nativeQuery = true)
+    PlotsPlants findPlotsPlantsByPlantId(@Param("plant_id") Integer plantId);
 }

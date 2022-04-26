@@ -1,18 +1,10 @@
 package teksystems.tomatofarm.database.entity;
 
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.CreatedDate;
-import teksystems.tomatofarm.database.dao.UserRoleDAO;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-@Builder
 @Getter
 @Setter
 @ToString
@@ -22,7 +14,6 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -44,8 +35,10 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();
 
-//    Don't really need this right now,
-//    I always just grab List with plotDAO.findByUserId
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Plot> userPlots = new ArrayList<>();
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
 }

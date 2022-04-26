@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.tomatofarm.database.dao.*;
 import teksystems.tomatofarm.database.entity.*;
-import teksystems.tomatofarm.formbean.PlantFormBean;
 import teksystems.tomatofarm.formbean.PlotEditFormBean;
 import teksystems.tomatofarm.formbean.PlotFormBean;
 
@@ -150,67 +149,33 @@ public class PlotController {
         }
         return response;
     }
-//    @RequestMapping(value = "/plots/detail/addPlantSubmit", method = { RequestMethod.POST, RequestMethod.GET})
-//    public ModelAndView addPlantSubmit(@Valid PlantFormBean form, BindingResult bindingResult) throws Exception {
-//        ModelAndView response = new ModelAndView();
-    //TODO: this method is failing, not sure why.
-    //submission URL is not catching correct values:
-    ///plots/detail/addPlantSubmit?id=&plotId=&varietyId=&plantsQty=3
-//        log.debug(form.toString());
-//        Integer varietyId = form.getVarietyId();
-//        Integer plotId = form.getPlotId();
-//        Integer plantsQty = form.getPlantsQty();
-//        log.debug("form id: "+form.getId()+" varietyId: "+varietyId+" plotId: "+plotId+" plantsQty: "+plantsQty);
-//        if (bindingResult.hasErrors()){
-//            for (FieldError error : bindingResult.getFieldErrors()) {
-//                log.debug(error.toString());
-//            }
-//            response.addObject("form", form);
-//            response.addObject("bindingResult", bindingResult);
-//            response.setViewName("plots/detail/"+plotId);
-//            List<Plant> plantsInThisPlot = new ArrayList<>();
-//            List<Variety> allVarieties = varietyRepository.findAll();
-//            Plot plotToDetail = plotRepository.findById(plotId);
-//            List<PlotsPlants> plotsPlants = plotsPlantsRepository.findPlotsPlantsByPlotId(plotId);
-//            for (PlotsPlants plotPlantInPlot : plotsPlants){
-//                Plant actualPlant = plotPlantInPlot.getPlant();
-//                Variety actualVariety = varietyRepository.findById(actualPlant.getVarietyId());
-//                actualPlant.setVarietyName(actualVariety.getVarietyName());
-//                actualPlant.setImageUrl(actualVariety.getImageUrl());
-//                actualPlant.setCategory(actualVariety.getCategory());
-//                plantsInThisPlot.add(actualPlant);
-//            }
-//            response.addObject("plants", plantsInThisPlot);
-//            response.addObject("allVarieties", allVarieties);
-//            response.addObject("plot", plotToDetail);
-//            return response;
-//        } else {
-//            Variety variety = varietyRepository.findById(varietyId);
-//            Plot plot = plotRepository.findById(plotId);
-//            Integer spacesTaken = plot.getSpacesTaken();
-//            for (int i = 0; i < plantsQty; i++){
-//                PlotsPlants newPlotsPlants = new PlotsPlants();
-//                Plant newPlant = new Plant();
-//                newPlant.setVarietyId(varietyId);
-//                newPlant.setVarietyName(variety.getVarietyName());
-//                newPlant.setImageUrl(variety.getImageUrl());
-//                newPlant.setImageUrl(variety.getCategory());
-//                newPlotsPlants.setPlant(newPlant);
-//                newPlotsPlants.setPlot(plot);
-//                plantRepository.save(newPlant);
-//                plotsPlantsRepository.save(newPlotsPlants);
-//                log.info("New plant: " + newPlant);
-//                log.info("New plotsPlants object: " + newPlotsPlants);
-//            }
-//            plot.setSpacesTaken(spacesTaken + plantsQty);
-//            plotRepository.save(plot);
-//            response.setViewName("redirect:/plots/detail/"+plotId);
-//        }
-//        return response;
-//    }
 
     //TODO: Delete plant. need to delete plot_plant and plant object simultaneously.
+    @RequestMapping(value = "/plots/deletePlant/{plantId}", method = RequestMethod.GET)
+    public ModelAndView deletePlant(@PathVariable("plantId") Integer plantId) throws Exception{
+        ModelAndView response = new ModelAndView();
+        log.debug("deletePlant is getting hit!");
+        Plant plantToDelete = plantRepository.findPlantById(plantId);
+        PlotsPlants plotsPlantsToDelete = plotsPlantsRepository.findPlotsPlantsByPlantId(plantId);
+        log.info("PlotsPlants to delete: " + plotsPlantsToDelete);
+        Plot plotToDeleteFrom = plotsPlantsToDelete.getPlot();
+        log.info("Plot to delete from: " + plotToDeleteFrom);
+        Integer plotId = plotToDeleteFrom.getId();
+        log.info("Plant to delete: " + plantToDelete);
 
+
+        if (plantToDelete == null){
+            log.info("Plant not found.");
+            response.setViewName("redirect:/plots/allPlots");
+        } else {
+            //no need to delete plots_plants row explicitly due to cascade
+            plotToDeleteFrom.setSpacesTaken(plotToDeleteFrom.getSpacesTaken()-1);
+            plotRepository.save(plotToDeleteFrom);
+            plantRepository.delete(plantToDelete);
+            response.setViewName("redirect:/plots/detail/" + plotId);
+        }
+        return response;
+    }
     @GetMapping("/plots/editPlot/{plotId}")
     public ModelAndView editPlot(@PathVariable("plotId") Integer plotId) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -232,7 +197,6 @@ public class PlotController {
         response.addObject("allCultivationStyles", allCultivationStyles);
         return response;
     }
-
     @RequestMapping(value = "/plots/plotEditSubmit", method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView editPlotSubmit(@Valid PlotEditFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();

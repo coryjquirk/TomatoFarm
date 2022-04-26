@@ -3,6 +3,7 @@
 
 <jsp:include page="../include/header.jsp"/>
 <div class="mainContent">
+    <a class="backArrow" href="/plots/allPlots"><button class="btn btn-primary"><i class="fa fa-arrow-left"></i></button></a>
     <sec:authorize access="hasAuthority('ADMIN')">
         <h2>Add new plot</h2>
         <form action="/plots/plotSubmit" method="POST" id="plotForm">

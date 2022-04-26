@@ -29,8 +29,8 @@ public class TestUserDAO {
     @Order(1)
     @Rollback(value = false)
     public void saveUserTest() {
-        User user1 = User.builder().firstName("Joe").lastName("Mauer").email("jmauer@twins.com").password("password").build();
-        User user2 = User.builder().firstName("Justin").lastName("Morneau").email("jmorneau@twins.com").password("password").build();
+        User user1 = new User("Joe", "Mauer", "jmauer@twins.com", "password");
+        User user2 = new User("Justin", "Morneau", "jmorneau@twins.com", "password");
         userRepository.save(user1);
         userRepository.save(user2);
         Assertions.assertTrue(user1.getId() > 0);
