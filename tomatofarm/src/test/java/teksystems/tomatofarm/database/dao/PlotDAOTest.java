@@ -19,10 +19,9 @@ import java.util.Optional;
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class TestPlotDAO {
+public class PlotDAOTest {
     @Autowired
     private PlotDAO plotRepository;
-
     @Test
     @Order(1)
     @Rollback(value = false)
@@ -35,18 +34,42 @@ public class TestPlotDAO {
     @Order(2)
     @Rollback(value = false)
     public void getPlotTest(){
-        Plot plot = plotRepository.findById(1);
-        Assertions.assertThat(plot.getId()).isEqualTo(1);
+        Plot plotById = plotRepository.findById(1);
+        Assertions.assertThat(plotById.getId()).isEqualTo(1);
+
     }
     @Test
     @Order(3)
     @Rollback(value = false)
     public void getPlotListTest(){
         List<Plot> plotList = plotRepository.findAll();
+        List<Plot> plotsBySoilMakeup = plotRepository.findBySoilMakeup("hydroponic");
+        List<Plot> plotByCultivationStyle = plotRepository.findByCultivationStyle("indoor hydroponics");
         Assertions.assertThat(plotList.size()).isGreaterThan(0);
+        Assertions.assertThat(plotsBySoilMakeup.size()).isGreaterThan(0);
+        Assertions.assertThat(plotByCultivationStyle.size()).isGreaterThan(0);
     }
     @Test
     @Order(4)
+    @Rollback(value = false)
+    public void findDistinctTest(){
+        List<String> distinctSoil = plotRepository.findDistinctSoil();
+        List<String> distinctCultivationStyle = plotRepository.findDistinctCultivationStyle();
+        Assertions.assertThat(distinctSoil.size()).isEqualTo(1);
+        Assertions.assertThat(distinctCultivationStyle.size()).isEqualTo(1);
+    }
+    @Test
+    @Order(5)
+    @Rollback(value = false)
+    public void findByUserIdTest(){
+        List<Plot> plots = plotRepository.findByUserId(1);
+        Assertions.assertThat(plots.size()).isGreaterThan(0);
+        plots.forEach((plot)-> {
+            Assertions.assertThat(plot.getUserId()).isEqualTo(1);
+        });
+    }
+    @Test
+    @Order(6)
     @Rollback(value = false)
     public void updatePlotTest(){
         Plot plot = plotRepository.findById(1);
@@ -54,7 +77,7 @@ public class TestPlotDAO {
         Assertions.assertThat(plotRepository.findById(1).getCultivationStyle()).isEqualTo(plot.getCultivationStyle());
     }
     @Test
-    @Order(5)
+    @Order(7)
     @Rollback(value = false)
     public void deletePlotTest(){
         Plot plot = plotRepository.findById(1);

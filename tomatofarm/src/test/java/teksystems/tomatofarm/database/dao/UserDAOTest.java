@@ -21,7 +21,7 @@ import java.util.Optional;
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class TestUserDAO {
+public class UserDAOTest {
     @Autowired
     private UserDAO userRepository;
 

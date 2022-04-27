@@ -19,7 +19,7 @@ import java.util.Optional;
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class TestVarietyDAO {
+public class VarietyDAOTest {
     @Autowired
     private VarietyDAO varietyRepository;
 
