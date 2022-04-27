@@ -13,9 +13,9 @@ import teksystems.tomatofarm.security.UserDetailsServiceImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration //this is key for component scan
-@EnableWebSecurity //"turns on" Spring Security
-@EnableGlobalMethodSecurity(prePostEnabled=true) //enables us to put security on controllers
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

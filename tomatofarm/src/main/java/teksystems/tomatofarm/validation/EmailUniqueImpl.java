@@ -29,7 +29,6 @@ public class EmailUniqueImpl implements ConstraintValidator<EmailUnique, String>
 		}
 		
 		User user = userDao.findByEmail(value);
-		
 		return ( user == null );
 	}
 
