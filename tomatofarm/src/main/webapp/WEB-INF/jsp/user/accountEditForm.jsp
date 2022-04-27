@@ -23,14 +23,16 @@
 
             <h3>Change password</h3>
             <label for="newPasswordId">New password:</label>
-            <input type="text" name="newPassword" id="newPasswordId" value="${form.newPassword}">
+            <input type="password" name="newPassword" id="newPasswordId" value="${form.newPassword}" placeholder="password">
             <c:forEach items='${bindingResult.getFieldErrors("newPassword")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
 
             <label for="confirmPasswordId">Confirm new password:</label>
-            <input type="text"
-                   name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}">
+            <input type="password"
+                   name="confirmPassword" id="confirmPasswordId" value="${form.confirmPassword}" placeholder="confirm password">
+            <p id="showPasswordLabel"><input type="checkbox" onclick="showPasswordChange()"
+                                             id="showPasswordCheckbox">Show Passwords</p>
             <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
                 <div style="color:red;">${error.getDefaultMessage()}</div>
             </c:forEach>
