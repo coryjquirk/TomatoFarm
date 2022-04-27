@@ -7,7 +7,7 @@
     <a href="addVariety">
         <button class="btn btn-primary">Add new variety</button>
     </a>
-    <a href="list" id="gridListToggle">
+    <a href="grid" id="gridListToggle">
         <button class="btn btn-secondary"><i class="fas fa-th"></i></button>
     </a>
     <hr>

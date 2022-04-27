@@ -45,7 +45,7 @@
     <sec:authorize access="!hasAuthority('ADMIN')">
         <p>Not authorized.</p>
         <a href="/index">
-            <button class="btn-primary">Home</button>
+            <button class="btn btn-primary">Return Home</button>
         </a>
     </sec:authorize>
     <hr>

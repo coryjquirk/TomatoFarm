@@ -28,7 +28,7 @@
             <tr>
                 <th scope="row">${plot.id}</th>
                 <td>${plot.soilMakeup}</td>
-                <td>${plot.cultivationStyle}</td>
+                <td><strong>${plot.cultivationStyle}</strong></td>
                 <td><a href="/admin/userEdit/${plot.userId}" class="userLink">${plot.userFullname}</a></td>
                 <td id="spacesTaken">${plot.spacesTaken}</td>
                 <td id="spacesAvailable"></td>

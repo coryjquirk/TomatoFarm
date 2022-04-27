@@ -77,9 +77,9 @@ public class PlotController {
             Plot newPlot = new Plot();
             String soilMakeup = form.getSoilMakeup();
             String cultivationStyle = form.getCultivationStyle();
-            User steward = userRepository.findById(form.getUserId());
-            newPlot.setUserId(steward.getId());
-            newPlot.setUserFullname(steward.getFirstName() + " " + steward.getLastName());
+            User user = userRepository.findById(form.getUserId());
+            newPlot.setUserId(user.getId());
+            newPlot.setUserFullname(user.getFirstName() + " " + user.getLastName());
             if (soilMakeup != null) {
                 newPlot.setSoilMakeup(soilMakeup);
             }
@@ -152,7 +152,6 @@ public class PlotController {
     @RequestMapping(value = "/plots/deletePlant/{plantId}", method = RequestMethod.GET)
     public ModelAndView deletePlant(@PathVariable("plantId") Integer plantId) throws Exception{
         ModelAndView response = new ModelAndView();
-        log.debug("deletePlant is getting hit!");
         Plant plantToDelete = plantRepository.findPlantById(plantId);
         PlotsPlants plotsPlantsToDelete = plotsPlantsRepository.findPlotsPlantsByPlantId(plantId);
         log.info("PlotsPlants to delete: " + plotsPlantsToDelete);
@@ -160,8 +159,6 @@ public class PlotController {
         log.info("Plot to delete from: " + plotToDeleteFrom);
         Integer plotId = plotToDeleteFrom.getId();
         log.info("Plant to delete: " + plantToDelete);
-
-
         if (plantToDelete == null){
             log.info("Plant not found.");
             response.setViewName("redirect:/plots/allPlots");
