@@ -37,3 +37,17 @@ function showPasswordRegister() {
         z.type = "password";
     }
 }
+function showPasswordChange() {
+    var w = document.getElementById("newPasswordId");
+    var v = document.getElementById("confirmPasswordId");
+    if (w.type === "password") {
+        w.type = "text";
+    } else {
+        w.type = "password";
+    }
+    if (v.type === "password") {
+        v.type = "text";
+    } else {
+        v.type = "password";
+    }
+}
