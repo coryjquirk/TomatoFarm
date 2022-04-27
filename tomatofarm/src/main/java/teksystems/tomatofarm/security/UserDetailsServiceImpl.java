@@ -39,16 +39,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         List<UserRole> userRoles = userRoleDao.findByUserId(userToAuth.getId());
 
-        // check the account status
         boolean accountIsEnabled = true;
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        // setup user roles
         Collection<? extends GrantedAuthority> springRoles = buildGrantAuthorities(userRoles);
 
-        // gets the encrypted password from the database
         String password = userToAuth.getPassword();
 
 

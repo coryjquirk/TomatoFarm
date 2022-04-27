@@ -21,8 +21,6 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class TestPlotDAO {
     @Autowired
-    private UserDAO userRepository;
-    @Autowired
     private PlotDAO plotRepository;
 
     @Test
@@ -61,12 +59,9 @@ public class TestPlotDAO {
     public void deletePlotTest(){
         Plot plot = plotRepository.findById(1);
         plotRepository.delete(plot);
-        //this next line ofNullable(x) x should be null since we just deleted that plot
         Optional<Plot> optionalPlot = Optional.ofNullable(plotRepository.findById(plot.getId()));
         Plot temporaryPlot = null;
-        //could also be !optionalPlot.isEmpty()
         if (optionalPlot.isPresent()){
-            //.get() is used to get information from optional
             temporaryPlot = plotRepository.findById(plot.getId());
         }
         Assertions.assertThat(temporaryPlot).isNull();
