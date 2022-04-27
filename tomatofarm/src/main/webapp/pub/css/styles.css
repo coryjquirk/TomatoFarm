@@ -18,8 +18,18 @@ body {
   background-image: url("geometric-leaves.png");
   background-blend-mode: lighten;
 }
+#header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
 #siteHeader{
   float: right;
+}
+#navBar{
+  text-align: center;
 }
 #homeIcon{
   margin: 0px 15px 0px 0px;
@@ -47,15 +57,9 @@ body a:hover, #homeIcon{
 #registerPage,
 #landingPage,
 #loginPage {
-  height: 700px;
+  height: 650px;
   background-repeat: no-repeat;
   background-size: cover;
-  /*transition: 0.3s;*/
-  /*animation: fadeIn 1s;*/
-  /*-webkit-animation: fadeIn 1s;*/
-  /*-moz-animation: fadeIn 1s;*/
-  /*-o-animation: fadeIn 1s;*/
-  /*-ms-animation: fadeIn 1s;*/
 }
 #landingPage {
   background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1648916731/frontendSBA/greenhouse_zzyera.jpg);
@@ -66,6 +70,7 @@ body a:hover, #homeIcon{
 #loginPage {
   background-image: url(https://res.cloudinary.com/dgwzirogr/image/upload/v1650980858/frontendSBA/bnw-greenwood_cooads.png);
 }
+
 #navBar {
   padding: 15px;
   font-family: "AGaramond-Bold";
@@ -92,7 +97,7 @@ body a:hover, #homeIcon{
 }
 .mainContent {
   padding: 30px;
-  margin: 75px;
+  margin: 115px 75px 75px 75px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: rgb(255, 163, 128, .90);
@@ -105,9 +110,9 @@ body a:hover, #homeIcon{
   -ms-animation: fadeIn 1s;
 }
 .backArrow{
-  position: absolute;
-  left: -65px;
-  top: -65px;
+  position: fixed;
+  top: 85px;
+  left: 20px;
 }
 #registrationForm {
   padding: 30px;
@@ -282,10 +287,6 @@ td {
   font-size: 12px;
   line-height: 30px;
 }
-#heirloomBoiz{
-  height: 30%;
-  width: 30%;
-}
 .card {
   width: 18rem;
   display: inline-block;
@@ -341,7 +342,6 @@ td {
     opacity: 1;
   }
 }
-
 @keyframes fadein {
   from {
     bottom: 0;
@@ -350,28 +350,6 @@ td {
   to {
     bottom: 100px;
     opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeout {
-  from {
-    bottom: 100px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    bottom: 100px;
-    opacity: 1;
-  }
-  to {
-    bottom: 0;
-    opacity: 0;
   }
 }
 @media screen and (min-width: 350px) {

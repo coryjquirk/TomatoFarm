@@ -27,7 +27,6 @@
                     </h3>
                 </div>
             </a>
-
             <a href="/login/logout">
                 <div class="homeLauncher">
                     <h3>

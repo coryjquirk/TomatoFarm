@@ -21,7 +21,7 @@
         <c:forEach var="user" items="${allUsers}">
             <tr>
                 <th scope="row">${user.id}</th>
-                <td>${user.firstName} ${user.lastName}</td>
+                <td><strong>${user.firstName} ${user.lastName}</strong></td>
                 <td>${user.email}</td>
                 <td>${user.createDate}</td>
                 <td><a href="/admin/userEdit/${user.id}"><button class="btn btn-primary">View user</button></a></td>
