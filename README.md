@@ -38,7 +38,8 @@ Managing farm plots of varying cultivation styles and their tomato plants of var
 Quality improvement
 - Code refactoring
 - 100% unit test coverage  
-- Increased security
+- Increased security  
+
 Features
 - Expanding to more farm business requirements
   - Sales/finances
